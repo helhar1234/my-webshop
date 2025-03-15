@@ -13,6 +13,20 @@ CREATE TABLE products (
     stock INT NOT NULL
 );
 
+CREATE TABLE cart (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    product_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    UNIQUE (user_id, product_id)
+);
+
+CREATE TABLE session (
+    sid VARCHAR PRIMARY KEY,
+    sess JSON NOT NULL,
+    expire TIMESTAMP(6) NOT NULL
+);
+
 -- Beispielprodukte hinzufügen
 INSERT INTO products (name, description, price, stock) VALUES
 ('Tomaten', 'Frische Bio-Tomaten', 1.99, 100),
@@ -72,4 +86,4 @@ INSERT INTO products (name, description, price, stock) VALUES
 
 -- Beispielnutzer hinzufügen (Passwort gehasht mit bcrypt)
 INSERT INTO users (username, password) VALUES
-('admin', '$2b$10$UxlJqE5E4/Hzl6GjfhQNz.QGz/0qSbbz4iX3j7mA3vh1yNiwE4VbC'); -- Passwort: "admin123"
+('admin', '$2a$10$AEB2lBo1lkvL48Mu8iuXf.H90b/lqGKfCpEPWQBOIF69NO/8.JXAq'); -- Passwort: "admin"

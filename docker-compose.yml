@@ -36,13 +36,5 @@ services:
     env_file:
       - .env
 
-  frontend:
-    build: ./frontend
-    restart: always
-    ports:
-      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
-    depends_on:
-      - backend
-
 volumes:
   db-data:
