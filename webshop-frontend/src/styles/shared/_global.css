@@ -15,6 +15,7 @@
 @import url("detail.css");
 @import url("cart.css");
 @import url("checkout.css");
+@import url("shop.css");
 
 /* Beispiel: Globaler Seitenhintergrund */
 body {

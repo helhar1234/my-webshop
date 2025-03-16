@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "./ProductCard";
+import { useAuth } from "../context/AuthContext";
 
 function ShopPreview() {
+  const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
   const navigate = useNavigate();
@@ -44,6 +46,10 @@ function ShopPreview() {
 
   // Add product to cart
   const handleAddToCart = async (productId) => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
     const quantity = quantities[productId] ?? 1;
     try {
       await axios.post(

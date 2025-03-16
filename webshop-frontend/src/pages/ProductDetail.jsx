@@ -3,8 +3,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import QuantityCounter from "../components/QuantityCounter";
 import ProductPreview from "../components/ShopPreview";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 function ProductDetail() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const { id } = useParams(); // Produkt-ID aus URL
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -37,6 +42,10 @@ function ProductDetail() {
 
   // Produkt in den Warenkorb legen
   const handleAddToCart = async () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
     if (!product) return;
     try {
       await axios.post(

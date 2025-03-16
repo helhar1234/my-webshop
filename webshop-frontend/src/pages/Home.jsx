@@ -3,6 +3,7 @@ import About from "../components/About";
 import Carousel from "../components/Carousel";
 import ShopPreview from "../components/ShopPreview";
 
+
 function Home() {
     return (
 

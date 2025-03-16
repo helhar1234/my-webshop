@@ -2,33 +2,47 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
+import { useAuth } from "../context/AuthContext";
 
 function Shop() {
+  const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
 
+  // New state for search term and sorting order
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("default");
+
+  // Fetch products (if search query exists, use it)
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const searchQuery = params.get("search");
+    const query = params.get("search") || "";
+    axios
+      .get(
+        query
+          ? `http://localhost:5000/api/search?query=${query}`
+          : "http://localhost:5000/api/products"
+      )
+      .then((response) => {
+        let data = response.data;
+        // Sort products if sort order is specified
+        if (sortOrder === "lowToHigh") {
+          data.sort((a, b) => a.price - b.price);
+        } else if (sortOrder === "highToLow") {
+          data.sort((a, b) => b.price - a.price);
+        }
+        setProducts(data);
+      })
+      .catch((error) => console.error("Error fetching products:", error));
+  }, [location.search, sortOrder]);
 
-    if (searchQuery) {
-      axios
-        .get(`http://localhost:5000/api/search?query=${searchQuery}`)
-        .then((response) => {
-          setProducts(response.data);
-        })
-        .catch((error) => console.error("Error fetching products:", error));
-    } else {
-      axios
-        .get("http://localhost:5000/api/products")
-        .then((response) => {
-          setProducts(response.data);
-        })
-        .catch((error) => console.error("Error fetching products:", error));
-    }
-  }, [location.search]);
+  // Handle search form submission
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/shop?search=${encodeURIComponent(searchTerm)}`);
+  };
 
   // Increase quantity
   const handleIncrease = (productId) => {
@@ -52,6 +66,10 @@ function Shop() {
 
   // Add to cart
   const handleAddToCart = async (productId) => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
     const quantity = quantities[productId] ?? 1;
     try {
       await axios.post(
@@ -70,9 +88,46 @@ function Shop() {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "2rem" }}>
-      <h1>Shop</h1>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "1rem" }}>
+    <div className="shop-container">
+      <h1>Unser Sortiment</h1>
+
+      {/* Filter Section */}
+      <div className="shop__filters">
+        <div className="shop__filters-left">
+          <select
+            id="sortOrder"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+            className="shop__sort-select input"
+          >
+            <option value="default">Default</option>
+            <option value="lowToHigh">Preis aufsteigend</option>
+            <option value="highToLow">Preis absteigend</option>
+          </select>
+        </div>
+        <div className="shop__filters-right">
+          <form className="shop__search-form" onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              placeholder="Suche..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="shop__search-input"
+            />
+            <button type="submit" className="shop__search-button">
+              <img
+                src="/images/icons/search-icon.png"
+                alt="Search"
+                className="shop__search-icon"
+              />
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+      {/* Product Grid */}
+      <div className="shop__grid">
         {products.map((product) => {
           const quantity = quantities[product.id] ?? 1;
           return (

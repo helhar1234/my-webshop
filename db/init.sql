@@ -83,6 +83,28 @@ INSERT INTO products (name, description, price, stock) VALUES
 ('Aprikosen', 'Frische Aprikosen', 3.29, 50),
 ('Zwetschgen', 'Aromatische Zwetschgen', 3.79, 40),
 ('Melonen', 'Sommerliche Honigmelonen', 4.49, 35);
+('Rhabarber', 'Frischer Rhabarber', 2.49, 75),
+('Bohnen', 'Grüne Bohnen aus biologischem Anbau', 1.99, 80),
+('Erbsen', 'Süße Zuckererbsen', 2.29, 90),
+('Mais', 'Frischer Bio-Mais', 1.89, 70),
+('Zuckerschoten', 'Knackige Zuckerschoten', 2.59, 60),
+('Aubergine', 'Frische Auberginen', 2.79, 50),
+('Kürbis', 'Saisonal großer Kürbis', 3.29, 40),
+('Rucola', 'Pikante Rucola-Blätter', 1.99, 80),
+('Bohnenkraut', 'Aromatisches Bohnenkraut', 1.49, 100),
+('Estragon', 'Frischer Estragon', 1.99, 60),
+('Schnittlauch', 'Frischer Schnittlauch', 1.29, 120),
+('Petersilie', 'Grüne Petersilie', 0.99, 150),
+('Basilikum', 'Aromatisches Basilikum', 1.79, 130),
+('Thymian', 'Frischer Thymian', 1.59, 110),
+('Rosmarin', 'Würziger Rosmarin', 1.69, 100),
+('Salbei', 'Aromatischer Salbei', 1.49, 90),
+('Oregano', 'Italienischer Oregano', 1.39, 80),
+('Minze', 'Frische Minze', 1.29, 95),
+('Zitronenmelisse', 'Erfrischende Zitronenmelisse', 1.19, 85),
+('Koriander', 'Frischer Koriander', 1.99, 70)
+
+
 
 -- Beispielnutzer hinzufügen (Passwort gehasht mit bcrypt)
 INSERT INTO users (username, password) VALUES
