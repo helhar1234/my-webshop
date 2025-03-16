@@ -1,69 +1,91 @@
-// CheckoutSummary.js
 import { useCheckout } from "../context/CheckoutContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CheckoutSummary() {
-    // Warenkorb & andere Checkout-Daten aus dem Context
-    const { cartItems, address, payment } = useCheckout();
-    const navigate = useNavigate();
+  const { cartItems, address, payment } = useCheckout();
+  const navigate = useNavigate();
 
-    // Falls cartItems fehlen oder leer sind, Abbruch
-    if (!cartItems || cartItems.length === 0) {
-        return <p>Keine Artikel im Checkout vorhanden.</p>;
-    }
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.product_price * item.quantity,
+    0
+  );
 
-    // Gesamtpreis berechnen
-    const totalPrice = cartItems.reduce(
-        (sum, item) => sum + item.product_price * item.quantity,
-        0
-    );
+  const maskCardNumber = (cardNumber) => {
+    if (!cardNumber) return "";
+    const raw = cardNumber.replace(/-/g, "");
+    const visible = raw.slice(-4);
+    return "XXXX-XXXX-XXXX-" + visible;
+  };
 
-    // Checkout-Request ans Backend schicken
-    const handleCheckout = async () => {
-        try {
-            const response = await axios.post(
-                "http://localhost:5000/api/checkout",
-                { cart: cartItems },       // <== wir schicken cartItems
-                { withCredentials: true }
-            );
-            alert(response.data.message);
-            // Hier könntest du ggf. den Context leeren oder auf eine Danke-Seite leiten:
-            navigate("/");
-        } catch (error) {
-            console.error("❌ Fehler beim Checkout:", error);
-        }
-    };
+  return (
+    <div className="checkout-container checkout-summary">
+      <h1 className="checkout-summary__title">Zusammenfassung</h1>
 
-    return (
-        <div>
-            <h1>Zusammenfassung</h1>
-
-            <h2>Produkte</h2>
-            {cartItems.map((item, index) => (
-                <div key={index}>
-                    {item.product_name} – {item.product_price}€ x {item.quantity}
-                </div>
-            ))}
-            <p>Gesamt: {totalPrice.toFixed(2)}€</p>
-
-            <h2>Lieferadresse</h2>
-            <p>{address.name}</p>
-            <p>
-                {address.street} {address.houseNumber}
-            </p>
-            <p>
-                {address.zip} {address.city}
-            </p>
-
-            <h2>Zahlungsdaten</h2>
-            <p>Kartennummer: {payment.cardNumber}</p>
-            <p>Gültig bis: {payment.expiry}</p>
-            <p>CVC: {payment.cvc}</p>
-
-            <button onClick={handleCheckout}>Checkout</button>
+      <div className="summary-section">
+        <h2>Produkte</h2>
+        <ul className="cart__list">
+        {cartItems.map((item, index) => {
+          const total = (item.product_price * item.quantity).toFixed(2);
+          return (
+            <li key={index} className="cart__item">
+              <div className="cart__item-image">
+                <img
+                  src={`/images/products/${item.product_name}.png`}
+                  alt={item.product_name}
+                  width="50"
+                  height="40"
+                />
+              </div>
+              <div className="cart__item-info">
+                <p className="cart__item-name">Produkt: {item.product_name}</p>
+                <p className="cart__item-quantity">Menge: {item.quantity}</p>
+                <p className="cart__item-price">Preis pro Stück: {item.product_price} €</p>
+                <p className="cart__item-total">Gesamt: {total} €</p>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+        <div className="checkout-overview__summary">
+          <p>
+            Gesamt: <span className="total-amount">{totalPrice.toFixed(2)}€</span>
+          </p>
         </div>
-    );
+      </div>
+
+      <div className="summary-section">
+        <h2 style={{ textAlign: "left" }}>Lieferadresse</h2>
+        <p>{address.firstName} {address.familyName}</p>
+        <p>{address.street} {address.houseNumber}</p>
+        <p>{address.zip} {address.city}</p>
+      </div>
+
+      <div className="summary-section">
+        <h2 style={{ textAlign: "left" }}>Zahlungsdaten</h2>
+        <p>
+          Kartennummer: <span className="masked-card">{maskCardNumber(payment.cardNumber)}</span>
+        </p>
+        <p>Ablaufdatum: {payment.expiry}</p>
+      </div>
+
+      <div className="checkout-summary__actions">
+        <button className="button button--danger" onClick={() => navigate("/")}>
+          Abbrechen
+        </button>
+        <button className="button button--primary" onClick={async () => {
+          try {
+            await axios.post("http://localhost:5000/api/checkout", { cart: cartItems }, { withCredentials: true });
+            navigate("/");
+          } catch (error) {
+            console.error("Checkout error:", error);
+          }
+        }}>
+          Bestellen
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default CheckoutSummary;

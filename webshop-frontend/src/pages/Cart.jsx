@@ -5,108 +5,117 @@ import { useAuth } from "../context/AuthContext";
 import { useCheckout } from "../context/CheckoutContext";
 
 function Cart() {
-    const [cart, setCart] = useState([]);
-    const { user } = useAuth();
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-    const { setCartItems } = useCheckout();
+  const [cart, setCart] = useState([]);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const { setCartItems } = useCheckout();
 
-    useEffect(() => {
-        if (!user) {
-            navigate("/login");
-            return;
-        }
-        axios.get("http://localhost:5000/api/cart", { withCredentials: true })
-            .then((response) => {
-                setCart(response.data);
-            })
-            .catch((error) => {
-                console.error("🚨 Fehler beim Abrufen des Warenkorbs:", error);
-                setCart([]);
-            })
-            .finally(() => setLoading(false));
-    }, [navigate, user]);
-
-    const removeFromCart = async (productId) => {
-        try {
-            await axios.delete(`http://localhost:5000/api/cart/remove/${productId}`, {
-                withCredentials: true
-            });
-            // Warenkorb erneut abrufen
-            const response = await axios.get("http://localhost:5000/api/cart", { withCredentials: true });
-            setCart(response.data);
-        } catch (error) {
-            console.error("❌ Fehler beim Entfernen des Produkts:", error);
-        }
-    };
-
-    const clearCart = async () => {
-        try {
-            await axios.delete("http://localhost:5000/api/cart/clear", { withCredentials: true });
-            setCart([]);
-        } catch (error) {
-            console.error("❌ Fehler beim Leeren des Warenkorbs:", error);
-        }
-    };
-
-    // HIER: Klick auf "Zur Kasse" → Navigiere zur Checkout-Übersicht
-    // und übergib den aktuellen Warenkorb per state
-    const startCheckout = () => {
-        // cart kommt aus deinem lokalen State (DB-Daten)
-        setCartItems(cart); 
-        // Danach zur Overview
-        navigate("/checkout/overview");
-    };
-
-    if (loading) {
-        return <p>Lädt...</p>;
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+      return;
     }
+    axios
+      .get("http://localhost:5000/api/cart", { withCredentials: true })
+      .then((response) => {
+        setCart(response.data);
+      })
+      .catch((error) => {
+        console.error("🚨 Fehler beim Abrufen des Warenkorbs:", error);
+        setCart([]);
+      })
+      .finally(() => setLoading(false));
+  }, [navigate, user]);
 
-    return (
-        <div>
-            <h1>Warenkorb</h1>
+  const removeFromCart = async (productId) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/cart/remove/${productId}`, {
+        withCredentials: true,
+      });
+      // Warenkorb erneut abrufen
+      const response = await axios.get("http://localhost:5000/api/cart", { withCredentials: true });
+      setCart(response.data);
+    } catch (error) {
+      console.error("❌ Fehler beim Entfernen des Produkts:", error);
+    }
+  };
 
-            {cart.length === 0 ? (
-                <p>Dein Warenkorb ist leer.</p>
-            ) : (
-                <ul>
-                    {cart.map((item, index) => {
-                        const total = (item.product_price * item.quantity).toFixed(2);
-                        return (
-                            <li key={index}>
-                                <div>
-                                    <img
-                                        src={`/images/products/${item.product_name}.png`}
-                                        alt={item.product_name}
-                                        width="50"
-                                        height="40"
-                                    />
-                                </div>
-                                <div>
-                                    <p>Produkt: {item.product_name}</p>
-                                    <p>Menge: {item.quantity}</p>
-                                    <p>Preis pro Stück: {item.product_price} €</p>
-                                    <p>Gesamt: {total} €</p>
-                                </div>
+  const clearCart = async () => {
+    try {
+      await axios.delete("http://localhost:5000/api/cart/clear", { withCredentials: true });
+      setCart([]);
+    } catch (error) {
+      console.error("❌ Fehler beim Leeren des Warenkorbs:", error);
+    }
+  };
 
-                                <button onClick={() => removeFromCart(item.product_id)}>
-                                    Entfernen
-                                </button>
-                            </li>
-                        );
-                    })}
-                </ul>
-            )}
+  const startCheckout = () => {
+    setCartItems(cart);
+    navigate("/checkout/overview");
+  };
 
-            {cart.length > 0 && (
-                <>
-                    <button onClick={clearCart}>Warenkorb leeren</button>
-                    {/* Anstatt handleCheckout => Start Checkoutprozess */}
-                    <button onClick={startCheckout}>Zur Kasse</button>
-                </>
-            )}
-        </div>
-    );
+  if (loading) {
+    return <p>Lädt...</p>;
+  }
+
+  return (
+    <div className="cart">
+      <h1 className="cart__title">Warenkorb</h1>
+      {cart.length === 0 ? (
+        <p className="cart__empty">Dein Warenkorb ist leer.</p>
+      ) : (
+        <ul className="cart__list">
+          {cart.map((item, index) => {
+            const total = (item.product_price * item.quantity).toFixed(2);
+            return (
+              <li key={index} className="cart__item">
+                <div className="cart__item-image">
+                  <img
+                    src={`/images/products/${item.product_name}.png`}
+                    alt={item.product_name}
+                    width="50"
+                    height="40"
+                  />
+                </div>
+                <div className="cart__item-info">
+                  <p className="cart__item-name">Produkt: {item.product_name}</p>
+                  <p className="cart__item-quantity">Menge: {item.quantity}</p>
+                  <p className="cart__item-price">Preis pro Stück: {item.product_price} €</p>
+                  <p className="cart__item-total">Gesamt: {total} €</p>
+                </div>
+                <button
+                  className="button button--danger cart__item-remove"
+                  onClick={() => removeFromCart(item.product_id)}
+                >
+                  Entfernen
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+
+      {cart.length > 0 && (
+        <>
+          <div className="cart__summary">
+            <p>Gesamtpreis: </p>
+            <span className="cart__summary-amount">
+              {cart.reduce((sum, item) => sum + item.product_price * item.quantity, 0).toFixed(2)} €
+            </span>
+          </div>
+          <div className="cart__actions">
+            <button className="button button--danger" onClick={clearCart}>
+              Warenkorb leeren
+            </button>
+            <button className="button button--primary" onClick={startCheckout}>
+              Zur Kasse
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
 
 export default Cart;

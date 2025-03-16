@@ -1,0 +1,132 @@
+/* Cart.css */
+
+.cart {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .cart__title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-charcoal);
+    margin-bottom: 1.5rem;
+  }
+  
+  .cart__empty {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  /* Liste der Warenkorb-Items */
+  .cart__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .cart__item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .cart__item-image {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+  
+  .cart__item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .cart__item-info {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .cart__item-info p {
+    margin: 0.25rem 0;
+    font-size: 1rem;
+    color: var(--text-charcoal);
+  }
+  
+  /* Entfernen-Button innerhalb eines Items */
+  .cart__item-remove {
+    background-color: var(--highlight-orange);
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .cart__item-remove:hover {
+    background-color: #e07c00;
+  }
+  
+  /* Zusammenfassung: Gesamtpreis unter den Items, rechts ausgerichtet, größer */
+  .cart__summary {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--text-charcoal);
+  }
+  
+  .cart__summary-amount {
+    color: var(--primary-leaf-green);
+    font-size: 1.6rem;
+  }
+  
+  /* Aktionen (Warenkorb leeren und Zur Kasse) */
+  .cart__actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .cart__actions button {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .cart__actions .button--danger {
+    background-color: var(--highlight-orange);
+    color: #fff;
+  }
+  
+  .cart__actions .button--danger:hover {
+    background-color: #e07c00;
+  }
+  
+  .cart__actions .button--primary {
+    background-color: var(--primary-leaf-green);
+    color: #fff;
+  }
+  
+  .cart__actions .button--primary:hover {
+    background-color: var(--primary-lime-green);
+  }
+  

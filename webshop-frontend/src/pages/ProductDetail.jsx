@@ -1,75 +1,93 @@
-// ProductDetail.js
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import QuantityCounter from "../components/QuantityCounter";
+import ProductPreview from "../components/ShopPreview";
 
 function ProductDetail() {
-    const { id } = useParams(); // Produkt-ID aus URL
-    const [product, setProduct] = useState(null);
-    const [quantity, setQuantity] = useState(1);
+  const { id } = useParams(); // Produkt-ID aus URL
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
-    useEffect(() => {
-        // Einzelnes Produkt laden, z. B. /api/products/42
-        axios
-            .get(`http://localhost:5000/api/products/${id}`)
-            .then((response) => {
-                setProduct(response.data);
-            })
-            .catch((error) => {
-                console.error("Fehler beim Laden des Produkts:", error);
-            });
-    }, [id]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/products/${id}`)
+      .then((response) => {
+        setProduct(response.data);
+      })
+      .catch((error) => {
+        console.error("Fehler beim Laden des Produkts:", error);
+      });
+  }, [id]);
 
-    // Menge erhöhen
-    const handleIncrease = () => {
-        setQuantity((prev) => Math.min(prev + 1, 50));
-    };
+  // Menge erhöhen
+  const handleIncrease = () => {
+    setQuantity((prev) => Math.min(prev + 1, 50));
+  };
 
-    // Menge verringern
-    const handleDecrease = () => {
-        setQuantity((prev) => Math.max(prev - 1, 1));
-    };
+  // Menge verringern
+  const handleDecrease = () => {
+    setQuantity((prev) => Math.max(prev - 1, 1));
+  };
 
-    // Produkt in den Warenkorb legen
-    const handleAddToCart = async () => {
-        if (!product) return;
-        try {
-            await axios.post(
-                "http://localhost:5000/api/cart/add",
-                { productId: product.id, quantity },
-                { withCredentials: true }
-            );
-            alert("Produkt zum Warenkorb hinzugefügt!");
-        } catch (error) {
-            console.error("Fehler beim Hinzufügen zum Warenkorb:", error);
-        }
-    };
+  // Direktwert ändern
+  const handleQuantityChange = (newVal) => {
+    setQuantity(Math.min(newVal, 50));
+  };
 
-    if (!product) {
-        return <p>Lädt...</p>;
+  // Produkt in den Warenkorb legen
+  const handleAddToCart = async () => {
+    if (!product) return;
+    try {
+      await axios.post(
+        "http://localhost:5000/api/cart/add",
+        { productId: product.id, quantity },
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.error("Fehler beim Hinzufügen zum Warenkorb:", error);
     }
+  };
 
-    return (
-        <div>
-            <h1>{product.name}</h1>
-            <img
-                src={`/images/products/${product.name}.png`}
-                alt={product.name}
-                width="100"
-                height="80"
-            />
-            <p>Preis: {product.price} €</p>
-            <p>Beschreibung: {product.description}</p>
+  if (!product) {
+    return <p>Lädt...</p>;
+  }
 
-            <div>
-                <button onClick={handleDecrease}>-</button>
-                <span>{quantity}</span>
-                <button onClick={handleIncrease}>+</button>
-            </div>
-
-            <button onClick={handleAddToCart}>In den Warenkorb</button>
+  return (
+    <div className="product-detail">
+      <div className="product-detail__container">
+        <div className="product-detail__image">
+          <img
+            src={`/images/products/${product.name}.png`}
+            alt={product.name}
+          />
         </div>
-    );
+        <div className="product-detail__info">
+          <h1 className="product-detail__name">{product.name}</h1>
+          <p className="product-detail__price">Preis: {product.price} €</p>
+          <p className="product-detail__description">{product.description}</p>
+          <div className="product-detail__counter">
+            <QuantityCounter
+              value={quantity}
+              onChange={handleQuantityChange}
+              onDecrease={handleDecrease}
+              onIncrease={handleIncrease}
+            />
+          </div>
+          <button
+            className="button button--primary product-detail__add-to-cart"
+            onClick={handleAddToCart}
+          >
+            In den Warenkorb
+          </button>
+        </div>
+      </div>
+      <div className="product-detail__preview">
+        <h2>Weitere Produkte</h2>
+        <ProductPreview />
+      </div>
+    </div>
+  );
 }
 
 export default ProductDetail;

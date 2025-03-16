@@ -1,0 +1,126 @@
+/* navbar.global.css */
+
+/* Volle Breite, grundlegende Farben, Fonts und Abstände */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--neutral-off-white);
+    padding: 1rem;
+    border-bottom: 1px solid var(--neutral-stone-gray);
+    width: 100%;
+    box-sizing: border-box;
+    font-family: var(--text-font);
+  }
+  
+  /* Marke (Logo + Brandtext) */
+  .navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .navbar__brand-logo {
+    height: 40px;
+    width: auto;
+  }
+  .navbar__brand-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-charcoal);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .navbar__brand-text:hover {
+    color: var(--primary-lime-green);
+  }
+  
+  /* Menü */
+  .navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar__item a {
+    font-size: 1.3rem;
+    color: var(--text-charcoal);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .navbar__item a:hover {
+    color: var(--primary-lime-green);
+  }
+  
+  /* Actions: Suchleiste, Icons, Hamburger */
+  .navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+  }
+  
+  /* Suchleiste */
+  .navbar__search {
+    position: relative;
+    transition: width 0.3s ease, opacity 0.3s ease;
+  }
+  .navbar__search input {
+    width: 0;
+    opacity: 0;
+    padding: 0.5rem;
+    border: 1px solid var(--neutral-stone-gray);
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: width 0.3s ease, opacity 0.3s ease;
+  }
+  .navbar__search.active input {
+    width: 200px;
+    opacity: 1;
+  }
+  
+  /* Suchbutton – verwendet search-icon.png, gleiche Größe wie andere Icons */
+  .navbar__search-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .navbar__search-btn .navbar__icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+  
+  /* Icons (Profil, Warenkorb, etc.) */
+  .navbar__icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .navbar__icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+  }
+  .bigger {
+    width: 32px;
+    height: 32px;
+  }
+  .navbar__icon:hover {
+    filter: brightness(0) saturate(100%) invert(46%) sepia(73%) saturate(2636%) hue-rotate(90deg) brightness(96%) contrast(95%);
+  }
+  
+  /* Hamburger-Button: Standardmäßig ausgeblendet */
+  .navbar__hamburger {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-charcoal);
+  }
+  

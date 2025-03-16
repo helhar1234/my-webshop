@@ -1,34 +1,23 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "./ProductCard";
 
-function Shop() {
+function ShopPreview() {
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
-  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const searchQuery = params.get("search");
-
-    if (searchQuery) {
-      axios
-        .get(`http://localhost:5000/api/search?query=${searchQuery}`)
-        .then((response) => {
-          setProducts(response.data);
-        })
-        .catch((error) => console.error("Error fetching products:", error));
-    } else {
-      axios
-        .get("http://localhost:5000/api/products")
-        .then((response) => {
-          setProducts(response.data);
-        })
-        .catch((error) => console.error("Error fetching products:", error));
-    }
-  }, [location.search]);
+    axios
+      .get("http://localhost:5000/api/products")
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) =>
+        console.error("Error fetching products:", error)
+      );
+  }, []);
 
   // Increase quantity
   const handleIncrease = (productId) => {
@@ -47,10 +36,13 @@ function Shop() {
   };
 
   const handleQuantityChange = (productId, newVal) => {
-    setQuantities((prev) => ({ ...prev, [productId]: Math.min(50, newVal) }));
+    setQuantities((prev) => ({
+      ...prev,
+      [productId]: Math.min(50, newVal),
+    }));
   };
 
-  // Add to cart
+  // Add product to cart
   const handleAddToCart = async (productId) => {
     const quantity = quantities[productId] ?? 1;
     try {
@@ -69,11 +61,15 @@ function Shop() {
     navigate(`/product/${productId}`);
   };
 
+  // Button: View All Products
+  const handleViewAll = () => {
+    navigate("/shop");
+  };
+
   return (
-    <div style={{ textAlign: "center", padding: "2rem" }}>
-      <h1>Shop</h1>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "1rem" }}>
-        {products.map((product) => {
+    <div className="shop-preview">
+      <div className="shop-preview__grid">
+        {products.slice(0, 10).map((product) => {
           const quantity = quantities[product.id] ?? 1;
           return (
             <ProductCard
@@ -82,15 +78,22 @@ function Shop() {
               quantity={quantity}
               onDecrease={() => handleDecrease(product.id)}
               onIncrease={() => handleIncrease(product.id)}
-              onQuantityChange={(newVal) => handleQuantityChange(product.id, newVal)}
+              onQuantityChange={(newVal) =>
+                handleQuantityChange(product.id, newVal)
+              }
               onAddToCart={() => handleAddToCart(product.id)}
               onClick={() => handleProductClick(product.id)}
             />
           );
         })}
       </div>
+      <div className="shop-preview__view-all">
+        <button className="button button--primary" onClick={handleViewAll}>
+          Weitere Produkte
+        </button>
+      </div>
     </div>
   );
 }
 
-export default Shop;
+export default ShopPreview;

@@ -3,62 +3,127 @@ import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 
 function Navbar() {
-    const { user } = useAuth();
-    const [searchTerm, setSearchTerm] = useState("");
-    const navigate = useNavigate();
+  const { user } = useAuth();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchActive, setSearchActive] = useState(false);
+  const navigate = useNavigate();
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        // nur suchen, wenn ein Suchbegriff eingegeben wurde
-        if (searchTerm.trim() !== "") {
-            // navigiert zu /shop?search=...
-            navigate(`/shop?search=${encodeURIComponent(searchTerm)}`);
-        }
-    };
+  // Führt die Suche aus und klappt die Suchleiste zusammen
+  const executeSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      navigate(`/shop?search=${encodeURIComponent(searchTerm)}`);
+    }
+    setSearchActive(false);
+  };
 
-    return (
-        <nav style={{ display: "flex", justifyContent: "space-between", padding: "1rem", borderBottom: "1px solid #ddd" }}>
-            <div>
-                <Link to="/">🛍 Webshop</Link>
-            </div>
+  // Beim Klick auf das Such-Icon:
+  const handleSearchIconClick = (e) => {
+    e.preventDefault();
+    // Wenn die Suchleiste nicht aktiv ist, öffne sie
+    if (!searchActive) {
+      setSearchActive(true);
+    } else {
+      // Ist sie aktiv und das Feld nicht leer → suche ausführen
+      if (searchTerm.trim() !== "") {
+        executeSearch(e);
+      } else {
+        // Ist sie aktiv aber leer, klappe sie wieder zusammen
+        setSearchActive(false);
+      }
+    }
+  };
 
-            <form onSubmit={handleSearch}>
-                <input
-                    type="text"
-                    placeholder="Suche..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+  // Beim Verlassen des Input-Feldes, falls es leer ist, zusammenklappen
+  const handleInputBlur = () => {
+    if (searchTerm.trim() === "") {
+      setSearchActive(false);
+    }
+  };
+
+  return (
+    <nav className="navbar">
+      {/* Brand-Bereich */}
+      <div className="navbar__brand">
+        <img
+          src="/images/logos/logo_nav.png"
+          alt="FreshLy Logo"
+          className="navbar__brand-logo"
+        />
+        <Link to="/" className="navbar__brand-text">
+          FreshLy
+        </Link>
+      </div>
+
+      {/* Menü */}
+      <ul className="navbar__menu">
+        <li className="navbar__item">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="navbar__item">
+          <Link to="/shop">Shop</Link>
+        </li>
+        <li className="navbar__item">
+          <Link to="/contact">Contact</Link>
+        </li>
+      </ul>
+
+      {/* Actions: Suchleiste, Such-Button & Icons */}
+      <div className="navbar__actions">
+        <form
+          onSubmit={executeSearch}
+          className={`navbar__search ${searchActive ? "active" : ""}`}
+        >
+          <input
+            type="text"
+            placeholder="Suche..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onBlur={handleInputBlur}
+          />
+        </form>
+        <button
+          className="navbar__search-btn"
+          onClick={handleSearchIconClick}
+        >
+          <img
+            src="/images/icons/search-icon.png"
+            alt="Search"
+            className="navbar__icon"
+          />
+        </button>
+        <div className="navbar__icons">
+          {user ? (
+            <>
+              <Link to="/profile">
+                <img
+                  src="/images/icons/profile-icon.png"
+                  alt="Profil"
+                  className="navbar__icon bigger"
                 />
-                <button type="submit">Suchen</button>
-            </form>
-
-            <ul style={{ display: "flex", gap: "1rem", listStyle: "none", alignItems: "center" }}>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/shop">Shop</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
-                {user ? (
-                    <>
-                        <li>
-                            <Link to="/profile">
-                                <img src="/images/icons/profile-icon.png" alt="Profil" width="24" height="24" />
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/cart">
-                                <img src="/images/icons/cart-icon.png" alt="Warenkorb" width="24" height="24" />
-                            </Link>
-                        </li>
-                    </>
-                ) : (
-                    <li>
-                        <Link to="/login">
-                            <img src="/images/icons/profile-icon.png" alt="Login" width="24" height="24" />
-                        </Link>
-                    </li>
-                )}
-            </ul>
-        </nav>
-    );
+              </Link>
+              <Link to="/cart">
+                <img
+                  src="/images/icons/cart-icon.png"
+                  alt="Warenkorb"
+                  className="navbar__icon bigger"
+                />
+              </Link>
+            </>
+          ) : (
+            <Link to="/login">
+              <img
+                src="/images/icons/profile-icon.png"
+                alt="Login"
+                className="navbar__icon bigger"
+              />
+            </Link>
+          )}
+        </div>
+        <button className="navbar__hamburger">☰</button>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;
