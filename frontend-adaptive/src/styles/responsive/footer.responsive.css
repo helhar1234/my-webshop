@@ -1,0 +1,29 @@
+/* footer.responsive.css */
+
+@media screen and (max-width: 768px) {
+    .footer__top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .footer__section {
+      flex: 1 1 100%;
+    }
+    .footer__map iframe {
+      max-width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .footer {
+      padding: 1.5rem;
+    }
+    .footer h2 {
+      font-size: 1.3rem;
+    }
+    .footer p,
+    .footer a {
+      font-size: 0.9rem;
+    }
+  }
+  

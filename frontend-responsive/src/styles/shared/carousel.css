@@ -1,0 +1,69 @@
+/* Carousel.css */
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 500px; /* feste Höhe */
+    overflow: hidden;
+  }
+  
+  .carousel__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  
+  .carousel__slide.active {
+    opacity: 1;
+  }
+  
+  /* Overlay für Text, mit hellem, weniger aufdringlichem Hintergrund */
+  .carousel__overlay {
+    position: absolute;
+    bottom: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem 2.5rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .carousel__overlay h2 {
+    color: var(--primary-leaf-green);
+    font-size: 3.5rem; /* größerer Text */
+    margin: 0;
+  }
+  
+  /* Pfeiltasten – schlankes, modernes Design */
+  .carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-charcoal);
+    font-size: 2.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s;
+  }
+  
+  .carousel__arrow:hover {
+    color: var(--primary-lime-green);
+  }
+  
+  .carousel__arrow--left {
+    left: 20px;
+  }
+  
+  .carousel__arrow--right {
+    right: 20px;
+  }
+  

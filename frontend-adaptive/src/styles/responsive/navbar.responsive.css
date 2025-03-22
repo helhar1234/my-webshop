@@ -1,0 +1,46 @@
+/* navbar.responsive.css */
+
+/* Fluides Layout */
+.responsive .navbar {
+  width: 100%;
+  padding: 1rem 2%;
+}
+
+/* Schriftgrößen leicht anpassen */
+.responsive .navbar__brand-text {
+  font-size: 1.5rem;
+}
+.responsive .navbar__item a {
+  font-size: 1.3rem;
+}
+
+/* Suchleiste: wenn aktiv, Input erweitert sich */
+.responsive .navbar__search.active input {
+  width: 200px;
+}
+
+/* Icons bleiben gleich */
+.responsive .navbar__icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Anpassungen für Tablets */
+@media screen and (max-width: 768px) {
+  .responsive .navbar {
+    padding: 0.8rem 4%;
+  }
+  .responsive .navbar__search.active input {
+    width: 150px;
+  }
+}
+
+/* Bei sehr kleinen Bildschirmen (z. B. Smartphones): Menü wird zum Hamburger */
+@media screen and (max-width: 480px) {
+  .responsive .navbar__menu {
+    display: none;
+  }
+  .responsive .navbar__hamburger {
+    display: block;
+  }
+}

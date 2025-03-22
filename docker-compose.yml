@@ -36,5 +36,29 @@ services:
     env_file:
       - .env
 
+  frontend-responsive:
+    build: ./frontend-responsive
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - backend
+    env_file:
+      - .env
+
+  frontend-adaptive:
+    build: ./frontend-adaptive
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+    env_file:
+      - .env
+
 volumes:
   db-data:
