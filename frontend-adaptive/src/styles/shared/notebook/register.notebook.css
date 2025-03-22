@@ -1,5 +1,5 @@
 /* Register.css */
-
+@media (min-width: 1024px) {
 /* Container für das gesamte Formular */
 .register-container {
     max-width: 400px;
@@ -39,4 +39,4 @@
     font-size: 1rem;
     color: var(--text-charcoal);
   }
-  
+}

@@ -1,5 +1,5 @@
 /* Carousel.css */
-
+@media (min-width: 1024px) {
 .carousel {
     position: relative;
     width: 100%;
@@ -66,4 +66,4 @@
   .carousel__arrow--right {
     right: 20px;
   }
-  
+}

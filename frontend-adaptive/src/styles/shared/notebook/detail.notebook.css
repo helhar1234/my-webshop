@@ -1,5 +1,5 @@
 /* ProductDetail.css */
-
+@media (min-width: 1024px) {
 .product-detail {
     padding: 2rem;
     max-width: 1200px;
@@ -91,4 +91,4 @@
     margin-bottom: 1.5rem;
     color: var(--primary-leaf-green);
   }
-  
+}

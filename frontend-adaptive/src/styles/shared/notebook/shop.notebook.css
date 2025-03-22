@@ -1,5 +1,5 @@
 /* Shop.css */
-
+@media (min-width: 1024px) {
 /* Container */
 .shop-container {
     text-align: center;
@@ -83,4 +83,4 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
   }
-  
+}

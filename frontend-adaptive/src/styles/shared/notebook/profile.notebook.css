@@ -1,5 +1,5 @@
 /* Profile.css */
-
+@media (min-width: 1024px) {
 .profile {
     max-width: 500px;
     margin: 2rem auto;
@@ -40,4 +40,4 @@
     margin-top: 1.5rem;
     width: 100%;
   }
-  
+}

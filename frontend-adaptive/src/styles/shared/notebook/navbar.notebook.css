@@ -1,5 +1,5 @@
 /* navbar.global.css */
-
+@media (min-width: 1024px) {
 /* Volle Breite, grundlegende Farben, Fonts und Abstände */
 .navbar {
     display: flex;
@@ -123,4 +123,4 @@
     cursor: pointer;
     color: var(--text-charcoal);
   }
-  
+}

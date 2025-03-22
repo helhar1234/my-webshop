@@ -1,5 +1,5 @@
 /* Cart.css */
-
+@media (min-width: 1024px) {
 .cart {
     max-width: 1000px;
     margin: 2rem auto;
@@ -129,4 +129,4 @@
   .cart__actions .button--primary:hover {
     background-color: var(--primary-lime-green);
   }
-  
+}

@@ -1,5 +1,5 @@
 /* ShopPreview.css */
-
+@media (min-width: 1024px) {
 .shop-preview {
     padding: 2rem;
     box-sizing: border-box;
@@ -24,4 +24,4 @@
     text-align: center;
     margin-top: 2rem;
   }
-  
+}

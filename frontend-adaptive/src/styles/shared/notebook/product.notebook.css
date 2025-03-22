@@ -1,5 +1,5 @@
 /* ProductCard.css */
-
+@media (min-width: 1024px) {
 .product-card {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -70,4 +70,4 @@
   .product-card__button:hover {
     background-color: var(--primary-lime-green);
   }
-  
+}

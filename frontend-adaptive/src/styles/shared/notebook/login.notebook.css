@@ -1,5 +1,5 @@
 /* Login.css */
-
+@media (min-width: 1024px) {
 /* Container für das ganze Formular */
 .login-container {
     display: flex;
@@ -45,4 +45,4 @@
     font-size: 1rem;
     color: var(--text-charcoal);
   }
-  
+}

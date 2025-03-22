@@ -1,22 +1,37 @@
+
 @import url("global-variables.css");
 @import url("button.css");
 @import url("input.css");
 @import url("counter.css");
-@import url("navbar.css");
-@import url("footer.css");
-@import url("carousel.css");
-@import url("about.css");
 @import url("home.css");
-@import url("product.css");
-@import url("preview.css");
-@import url("login.css");
-@import url("profile.css");
-@import url("register.css");
-@import url("detail.css");
-@import url("cart.css");
-@import url("checkout.css");
-@import url("shop.css");
 
+@import url("./notebook/navbar.notebook.css");
+@import url("./notebook/footer.notebook.css");
+@import url("./notebook/carousel.notebook.css");
+@import url("./notebook/about.notebook.css");
+@import url("./notebook/product.notebook.css");
+@import url("./notebook/preview.notebook.css");
+@import url("./notebook/login.notebook.css");
+@import url("./notebook/profile.notebook.css");
+@import url("./notebook/register.notebook.css");
+@import url("./notebook/detail.notebook.css");
+@import url("./notebook/cart.notebook.css");
+@import url("./notebook/checkout.notebook.css");
+@import url("./notebook/shop.notebook.css");
+
+@import url("./mobile/navbar.mobile.css");
+@import url("./mobile/footer.mobile.css");
+@import url("./mobile/carousel.mobile.css");
+@import url("./mobile/about.mobile.css");
+@import url("./mobile/product.mobile.css");
+@import url("./mobile/preview.mobile.css");
+@import url("./mobile/login.mobile.css");
+@import url("./mobile/profile.mobile.css");
+@import url("./mobile/register.mobile.css");
+@import url("./mobile/detail.mobile.css");
+@import url("./mobile/cart.mobile.css");
+@import url("./mobile/checkout.mobile.css");
+@import url("./mobile/shop.mobile.css");
 /* Beispiel: Globaler Seitenhintergrund */
 body {
     margin: 0;
