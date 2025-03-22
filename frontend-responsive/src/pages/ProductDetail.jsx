@@ -63,37 +63,52 @@ function ProductDetail() {
   }
 
   return (
-    <div className="product-detail">
-      <div className="product-detail__container">
-        <div className="product-detail__image">
-          <img
-            src={`/images/products/${product.name}.png`}
-            alt={product.name}
-          />
-        </div>
-        <div className="product-detail__info">
-          <h1 className="product-detail__name">{product.name}</h1>
-          <p className="product-detail__price">Preis: {product.price} €</p>
-          <p className="product-detail__description">{product.description}</p>
-          <div className="product-detail__counter">
-            <QuantityCounter
-              value={quantity}
-              onChange={handleQuantityChange}
-              onDecrease={handleDecrease}
-              onIncrease={handleIncrease}
+    <div className="product-detail mt-5">
+      <div className="container">
+        <div className="row g-4 product-detail__container">
+          {/* Bild */}
+          <div className="col-12 col-lg-6 product-detail__image">
+            <img
+              src={`/images/products/${product.name}.png`}
+              alt={product.name}
             />
           </div>
-          <button
-            className="button button--primary product-detail__add-to-cart"
-            onClick={handleAddToCart}
-          >
-            In den Warenkorb
-          </button>
+
+          {/* Produktinfos */}
+          <div className="col-12 col-lg-6">
+            <div className="product-detail__info">
+              <div className="product-detail__header">
+                <h1 className="product-detail__name">{product.name}</h1>
+                <p className="product-detail__price">{product.price} €</p>
+              </div>
+
+              <p className="product-detail__description">{product.description}</p>
+
+              <div className="product-detail__purchase">
+                <div className="product-detail__counter">
+                  <QuantityCounter
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    onDecrease={handleDecrease}
+                    onIncrease={handleIncrease}
+                  />
+                </div>
+
+                <button
+                  className="button button--primary product-detail__add-to-cart"
+                  onClick={handleAddToCart}
+                >
+                  In den Warenkorb
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="product-detail__preview">
-        <h2>Weitere Produkte</h2>
-        <ProductPreview />
+
+        <div className="product-detail__preview">
+          <h2>Weitere Produkte</h2>
+          <ProductPreview />
+        </div>
       </div>
     </div>
   );

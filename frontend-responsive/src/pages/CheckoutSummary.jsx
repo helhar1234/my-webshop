@@ -19,60 +19,54 @@ function CheckoutSummary() {
   };
 
   return (
-    <div className="checkout-container checkout-summary">
-      <h1 className="checkout-summary__title">Zusammenfassung</h1>
+    <div className="checkout checkout__container checkout__summary">
+      <h1 className="checkout__title">Zusammenfassung</h1>
 
-      <div className="summary-section">
+      <div className="checkout__summary-section">
         <h2>Produkte</h2>
-        <ul className="cart__list">
-        {cartItems.map((item, index) => {
-          const total = (item.product_price * item.quantity).toFixed(2);
-          return (
-            <li key={index} className="cart__item">
-              <div className="cart__item-image">
-                <img
-                  src={`/images/products/${item.product_name}.png`}
-                  alt={item.product_name}
-                  width="50"
-                  height="40"
-                />
-              </div>
-              <div className="cart__item-info">
-                <p className="cart__item-name">Produkt: {item.product_name}</p>
-                <p className="cart__item-quantity">Menge: {item.quantity}</p>
-                <p className="cart__item-price">Preis pro Stück: {item.product_price} €</p>
-                <p className="cart__item-total">Gesamt: {total} €</p>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-        <div className="checkout-overview__summary">
-          <p>
-            Gesamt: <span className="total-amount">{totalPrice.toFixed(2)}€</span>
-          </p>
-        </div>
+        <ul className="checkout__list">
+          {cartItems.map((item, index) => {
+            const total = (item.product_price * item.quantity).toFixed(2);
+            return (
+              <li key={index} className="checkout__item">
+                <div className="checkout__item-image">
+                  <img
+                    src={`/images/products/${item.product_name}.png`}
+                    alt={item.product_name}
+                    width="50"
+                    height="40"
+                  />
+                </div>
+                <div className="checkout__item-info">
+                  <p>Produkt: {item.product_name}</p>
+                  <p>Menge: {item.quantity}</p>
+                  <p>Preis pro Stück: {item.product_price} €</p>
+                  <p>Gesamt: {total} €</p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <p className="checkout__summary-total">
+          Gesamt: <span className="checkout__total-amount">{totalPrice.toFixed(2)} €</span>
+        </p>
       </div>
 
-      <div className="summary-section">
-        <h2 style={{ textAlign: "left" }}>Lieferadresse</h2>
+      <div className="checkout__summary-section">
+        <h2>Lieferadresse</h2>
         <p>{address.firstName} {address.familyName}</p>
         <p>{address.street} {address.houseNumber}</p>
         <p>{address.zip} {address.city}</p>
       </div>
 
-      <div className="summary-section">
-        <h2 style={{ textAlign: "left" }}>Zahlungsdaten</h2>
-        <p>
-          Kartennummer: <span className="masked-card">{maskCardNumber(payment.cardNumber)}</span>
-        </p>
+      <div className="checkout__summary-section">
+        <h2>Zahlungsdaten</h2>
+        <p>Kartennummer: <span className="checkout__masked-card">{maskCardNumber(payment.cardNumber)}</span></p>
         <p>Ablaufdatum: {payment.expiry}</p>
       </div>
 
-      <div className="checkout-summary__actions">
-        <button className="button button--danger" onClick={() => navigate("/")}>
-          Abbrechen
-        </button>
+      <div className="checkout__actions">
+        <button className="button button--danger" onClick={() => navigate("/")}>Abbrechen</button>
         <button className="button button--primary" onClick={async () => {
           try {
             await axios.post("http://localhost:5000/api/checkout", { cart: cartItems }, { withCredentials: true });

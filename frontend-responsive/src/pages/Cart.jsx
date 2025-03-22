@@ -34,7 +34,9 @@ function Cart() {
         withCredentials: true,
       });
       // Warenkorb erneut abrufen
-      const response = await axios.get("http://localhost:5000/api/cart", { withCredentials: true });
+      const response = await axios.get("http://localhost:5000/api/cart", {
+        withCredentials: true,
+      });
       setCart(response.data);
     } catch (error) {
       console.error("❌ Fehler beim Entfernen des Produkts:", error);
@@ -43,7 +45,9 @@ function Cart() {
 
   const clearCart = async () => {
     try {
-      await axios.delete("http://localhost:5000/api/cart/clear", { withCredentials: true });
+      await axios.delete("http://localhost:5000/api/cart/clear", {
+        withCredentials: true,
+      });
       setCart([]);
     } catch (error) {
       console.error("❌ Fehler beim Leeren des Warenkorbs:", error);
@@ -79,9 +83,13 @@ function Cart() {
                   />
                 </div>
                 <div className="cart__item-info">
-                  <p className="cart__item-name">Produkt: {item.product_name}</p>
+                  <p className="cart__item-name">
+                    Produkt: {item.product_name}
+                  </p>
                   <p className="cart__item-quantity">Menge: {item.quantity}</p>
-                  <p className="cart__item-price">Preis pro Stück: {item.product_price} €</p>
+                  <p className="cart__item-price">
+                    Preis pro Stück: {item.product_price} €
+                  </p>
                   <p className="cart__item-total">Gesamt: {total} €</p>
                 </div>
                 <button
@@ -101,7 +109,13 @@ function Cart() {
           <div className="cart__summary">
             <p>Gesamtpreis: </p>
             <span className="cart__summary-amount">
-              {cart.reduce((sum, item) => sum + item.product_price * item.quantity, 0).toFixed(2)} €
+              {cart
+                .reduce(
+                  (sum, item) => sum + item.product_price * item.quantity,
+                  0
+                )
+                .toFixed(2)}{" "}
+              €
             </span>
           </div>
           <div className="cart__actions">

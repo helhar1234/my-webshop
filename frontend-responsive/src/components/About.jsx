@@ -2,7 +2,7 @@ import React from "react";
 
 function About() {
   return (
-    <div className="about">
+    <div className="about container">
       {/* Hero Section */}
       <section className="about__hero">
         <img
@@ -38,31 +38,35 @@ function About() {
           FreshLy wurde gegründet, um den Zugang zu hochwertigen, frischen Lebensmitteln zu vereinfachen. Unser Team arbeitet Tag für Tag daran, Ihnen ein innovatives Einkaufserlebnis zu bieten. Wir sind stolz darauf, Ihnen eine große Auswahl an saisonalen und regionalen Produkten anzubieten – von knackigem Gemüse bis zu saftigen Früchten.
         </p>
         <p>
-          Mit modernster Technologie und einem starken Fokus auf Nachhaltigkeit optimieren wir unsere Prozesse ständig. Bei FreshLy steht Qualität an erster Stelle – von der Auswahl der Produkte bis hin zur Auslieferung direkt zu Ihnen nach Hause.
+          Mit modernster Technologie und einem starken Fokus auf Nachhaltigkeit optimieren wir unsere Prozesse ständig. Bei FreshLy steht Qualität an erster Stelle - von der Auswahl der Produkte bis hin zur Auslieferung direkt zu Ihnen nach Hause.
         </p>
       </section>
 
       {/* Team Section */}
       <section className="about__team">
         <h2>Unser Team</h2>
-        <div className="about__team-members">
-          <div className="team-member">
-            <img
-              src="/images/img/ceo.jpg"
-              alt="Unsere CEO und Gründerin"
-              className="team-member__image"
-            />
-            <h3>Maxime Musterfrau</h3>
-            <p>Gründerin & CEO</p>
+        <div className="row about__team-members">
+          <div className="col-12 col-md-6 d-flex justify-content-center">
+            <div className="team-member">
+              <img
+                src="/images/img/ceo.jpg"
+                alt="Unsere CEO und Gründerin"
+                className="team-member__image"
+              />
+              <h3>Maxime Musterfrau</h3>
+              <p>Gründerin & CEO</p>
+            </div>
           </div>
-          <div className="team-member">
-            <img
-              src="/images/img/farmer.jpg"
-              alt="Unsere PartnerInnen"
-              className="team-member__image"
-            />
-            <h3>Erika Muserbauer</h3>
-            <p>Partnerschaft & Logistik</p>
+          <div className="col-12 col-md-6 d-flex justify-content-center">
+            <div className="team-member">
+              <img
+                src="/images/img/farmer.jpg"
+                alt="Unsere PartnerInnen"
+                className="team-member__image"
+              />
+              <h3>Erika Muserbauer</h3>
+              <p>Partnerschaft & Logistik</p>
+            </div>
           </div>
         </div>
       </section>

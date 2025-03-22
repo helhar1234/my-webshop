@@ -73,27 +73,52 @@ function ShopPreview() {
   };
 
   return (
-    <div className="shop-preview">
-      <div className="shop-preview__grid">
+    <div className="shop-preview container">
+      {/* Desktop Grid */}
+      <div className="d-none d-md-grid shop-preview__grid">
         {products.slice(0, 10).map((product) => {
           const quantity = quantities[product.id] ?? 1;
           return (
-            <ProductCard
-              key={product.id}
-              product={product}
-              quantity={quantity}
-              onDecrease={() => handleDecrease(product.id)}
-              onIncrease={() => handleIncrease(product.id)}
-              onQuantityChange={(newVal) =>
-                handleQuantityChange(product.id, newVal)
-              }
-              onAddToCart={() => handleAddToCart(product.id)}
-              onClick={() => handleProductClick(product.id)}
-            />
+            <div key={product.id}>
+              <ProductCard
+                product={product}
+                quantity={quantity}
+                onDecrease={() => handleDecrease(product.id)}
+                onIncrease={() => handleIncrease(product.id)}
+                onQuantityChange={(newVal) =>
+                  handleQuantityChange(product.id, newVal)
+                }
+                onAddToCart={() => handleAddToCart(product.id)}
+                onClick={() => handleProductClick(product.id)}
+              />
+            </div>
           );
         })}
       </div>
-      <div className="shop-preview__view-all">
+
+      {/* Mobile Scroll */}
+      <div className="d-md-none shop-preview__scroll">
+        {products.slice(0, 10).map((product) => {
+          const quantity = quantities[product.id] ?? 1;
+          return (
+            <div key={product.id} className="shop-preview__scroll-item">
+              <ProductCard
+                product={product}
+                quantity={quantity}
+                onDecrease={() => handleDecrease(product.id)}
+                onIncrease={() => handleIncrease(product.id)}
+                onQuantityChange={(newVal) =>
+                  handleQuantityChange(product.id, newVal)
+                }
+                onAddToCart={() => handleAddToCart(product.id)}
+                onClick={() => handleProductClick(product.id)}
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="shop-preview__view-all text-center mt-4">
         <button className="button button--primary" onClick={handleViewAll}>
           Weitere Produkte
         </button>

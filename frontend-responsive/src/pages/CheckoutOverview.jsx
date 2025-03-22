@@ -26,14 +26,14 @@ function CheckoutOverview() {
   };
 
   return (
-    <div className="checkout-container checkout-overview">
-      <h1>Checkout – Übersicht</h1>
-      <ul className="cart__list">
+    <div className="checkout checkout__container checkout__overview">
+      <h1 className="checkout__title">Checkout – Übersicht</h1>
+      <ul className="checkout__list">
         {cartItems.map((item, index) => {
           const total = (item.product_price * item.quantity).toFixed(2);
           return (
-            <li key={index} className="cart__item">
-              <div className="cart__item-image">
+            <li key={index} className="checkout__item">
+              <div className="checkout__item-image">
                 <img
                   src={`/images/products/${item.product_name}.png`}
                   alt={item.product_name}
@@ -41,14 +41,14 @@ function CheckoutOverview() {
                   height="40"
                 />
               </div>
-              <div className="cart__item-info">
-                <p className="cart__item-name">Produkt: {item.product_name}</p>
-                <p className="cart__item-quantity">Menge: {item.quantity}</p>
-                <p className="cart__item-price">Preis pro Stück: {item.product_price} €</p>
-                <p className="cart__item-total">Gesamt: {total} €</p>
+              <div className="checkout__item-info">
+                <p>Produkt: {item.product_name}</p>
+                <p>Menge: {item.quantity}</p>
+                <p>Preis pro Stück: {item.product_price} €</p>
+                <p>Gesamt: {total} €</p>
               </div>
               <button
-                className="button button--danger cart__item-remove"
+                className="button button--danger checkout__item-remove"
                 onClick={() => handleRemove(item.product_id)}
               >
                 Entfernen
@@ -57,18 +57,12 @@ function CheckoutOverview() {
           );
         })}
       </ul>
-      <div className="checkout-overview__summary">
-      <p>Gesamtpreis: </p>
-  <span className="total-amount">{totalPrice.toFixed(2)} €</span>
-</div>
-
-      <div className="checkout-overview__actions">
-        <button className="button button--danger" onClick={() => navigate("/")}>
-          Abbrechen
-        </button>
-        <button className="button button--primary" onClick={() => navigate("/checkout/address")}>
-          Weiter
-        </button>
+      <div className="checkout__summary">
+        <p>Gesamtpreis: <span className="checkout__total-amount">{totalPrice.toFixed(2)} €</span></p>
+      </div>
+      <div className="checkout__actions">
+        <button className="button button--danger" onClick={() => navigate("/")}>Abbrechen</button>
+        <button className="button button--primary" onClick={() => navigate("/checkout/address")}>Weiter</button>
       </div>
     </div>
   );

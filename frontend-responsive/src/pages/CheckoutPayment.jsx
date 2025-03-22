@@ -52,9 +52,9 @@ function CheckoutPayment() {
   };
 
   return (
-    <div className="checkout-container checkout-payment">
-      <h1 className="checkout-payment__title">Zahlungsdaten</h1>
-      <div className="payment-form">
+    <div className="checkout checkout__container checkout__payment">
+      <h1 className="checkout__title">Zahlungsdaten</h1>
+      <div className="checkout__form">
         <input
           name="cardNumber"
           placeholder="Kartennummer"
@@ -64,7 +64,7 @@ function CheckoutPayment() {
           required
           maxLength="19"
         />
-        <div className="payment-group">
+        <div className="checkout__form-group">
           <input
             name="expiry"
             placeholder="MM/YY"
@@ -84,13 +84,9 @@ function CheckoutPayment() {
             maxLength="3"
           />
         </div>
-        <div className="checkout-payment__actions">
-          <button className="button button--danger" onClick={() => navigate("/")}>
-            Abbrechen
-          </button>
-          <button className="button button--primary" onClick={handleNext}>
-            Weiter
-          </button>
+        <div className="checkout__actions">
+          <button className="button button--danger" onClick={() => navigate("/")}>Abbrechen</button>
+          <button className="button button--primary" onClick={handleNext}>Weiter</button>
         </div>
       </div>
     </div>

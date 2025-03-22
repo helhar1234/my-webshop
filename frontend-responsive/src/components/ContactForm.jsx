@@ -19,43 +19,45 @@ function ContactForm() {
     };
 
     return (
-        <div style={{ textAlign: "center", padding: "2rem" }}>
-            {success && <p style={{ color: "green" }}>Danke für deine Nachricht!</p>}
-            <form 
-                onSubmit={handleSubmit} 
-                style={{ 
-                    display: "flex", 
-                    flexDirection: "column", 
-                    gap: "1rem", 
-                    maxWidth: "400px", 
-                    margin: "0 auto" 
-                }}
-            >
-                <input 
-                    type="text" 
-                    placeholder="Dein Name" 
-                    value={name} 
-                    onChange={(e) => setName(e.target.value)} 
-                    required 
-                    class="input"
-                />
-                <input 
-                    type="email" 
-                    placeholder="Deine E-Mail" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)} 
-                    required 
-                    class="input"
-                />
-                <textarea 
-                    placeholder="Deine Nachricht" 
-                    value={message} 
-                    onChange={(e) => setMessage(e.target.value)} 
-                    required 
-                    class="input"
-                />
-                <button className="button button--primary" type="submit">Absenden</button>
-            </form>
+        <div className="container py-5">
+            <div className="row justify-content-center">
+                <div className="col-12 col-sm-10 col-md-8 col-lg-6">
+                    {success && (
+                        <p className="text-success text-center">
+                            Danke für deine Nachricht!
+                        </p>
+                    )}
+                    <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
+                        <input
+                            type="text"
+                            placeholder="Dein Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                            className="input"
+                        />
+                        <input
+                            type="email"
+                            placeholder="Deine E-Mail"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            className="input"
+                        />
+                        <textarea
+                            placeholder="Deine Nachricht"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            required
+                            className="input"
+                            rows={5}
+                        />
+                        <button className="button button--primary" type="submit">
+                            Absenden
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }

@@ -1,16 +1,16 @@
 /* Register.css */
-
-/* Container für das gesamte Formular */
 .register-container {
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    box-sizing: border-box;
-  }
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+
   
   /* Überschrift */
   .register-title {

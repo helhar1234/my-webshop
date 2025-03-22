@@ -27,8 +27,8 @@ export const CartProvider = ({ children }) => {
     // 🛠️ Produkt zum Warenkorb hinzufügen
     const addItem = async (productId, quantity) => {
         try {
-            await axios.post("http://localhost:5000/api/cart/add", 
-                { productId, quantity }, 
+            await axios.post("http://localhost:5000/api/cart/add",
+                { productId, quantity },
                 { withCredentials: true }
             );
 

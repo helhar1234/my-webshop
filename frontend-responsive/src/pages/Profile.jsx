@@ -43,22 +43,27 @@ function Profile() {
   }
 
   return (
-    <div className="profile">
-      <div className="profile__header">
-        <img
-          src="/images/icons/profile-icon.png"
-          alt="Profil"
-          className="profile__image"
-        />
-        <h1 className="profile__title">Profil</h1>
-      </div>
-      <div className="profile__info">
-        <p>
-          <strong>Benutzername:</strong> {user.username}
-        </p>
-        <button className="button button--danger profile__logout" onClick={logout}>
-          Logout
-        </button>
+    <div className="d-flex justify-content-center align-items-center py-5 px-3">
+      <div className="profile">
+        <div className="profile__header">
+          <img
+            src="/images/icons/profile-icon.png"
+            alt="Profil"
+            className="profile__image"
+          />
+          <h1 className="profile__title">Profil</h1>
+        </div>
+        <div className="profile__info">
+          <p>
+            <strong>Benutzername:</strong> {user.username}
+          </p>
+          <button
+            className="button button--danger profile__logout"
+            onClick={logout}
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );

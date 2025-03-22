@@ -27,8 +27,8 @@ export const AuthProvider = ({ children }) => {
     // 🛠️ Login-Handler
     const login = async (username, password) => {
         try {
-            await axios.post('http://localhost:5000/api/auth/login', 
-                { username, password }, 
+            await axios.post('http://localhost:5000/api/auth/login',
+                { username, password },
                 { withCredentials: true }
             );
 

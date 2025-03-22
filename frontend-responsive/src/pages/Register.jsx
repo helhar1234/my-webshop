@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
@@ -16,7 +16,7 @@ function Register() {
   const handleRegister = async () => {
     setLoading(true);
     setMessage("");
-    
+
     // Validierung: Felder müssen ausgefüllt sein
     let valid = true;
     if (username.trim() === "") {
@@ -57,43 +57,47 @@ function Register() {
   };
 
   return (
-    <div className="register-container">
-      <h1 className="register-title">Registrieren</h1>
-      <div className="register-form">
-        <input
-          type="text"
-          placeholder="Benutzername"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-            if (e.target.value.trim() !== "") setUsernameError(false);
-          }}
-          className={`input ${usernameError ? "error" : ""}`}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Passwort"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            if (e.target.value.trim() !== "") setPasswordError(false);
-          }}
-          className={`input ${passwordError ? "error" : ""}`}
-          required
-        />
-        <button
-          className="button button--primary login-button"
-          disabled={loading}
-          onClick={handleRegister}
-        >
-          {loading ? "Registrieren..." : "Registrieren"}
-        </button>
-        {message && <p className="register-error">{message}</p>}
+    <div className="d-flex justify-content-center align-items-center py-5">
+      <div className="register-container">
+        <h1 className="register-title">Registrieren</h1>
+
+        <div className="register-form">
+          <input
+            type="text"
+            placeholder="Benutzername"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+              if (e.target.value.trim() !== "") setUsernameError(false);
+            }}
+            className={`input ${usernameError ? "error" : ""}`}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Passwort"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              if (e.target.value.trim() !== "") setPasswordError(false);
+            }}
+            className={`input ${passwordError ? "error" : ""}`}
+            required
+          />
+          <button
+            className="button button--primary login-button"
+            disabled={loading}
+            onClick={handleRegister}
+          >
+            {loading ? "Registrieren..." : "Registrieren"}
+          </button>
+          {message && <p className="register-error">{message}</p>}
+        </div>
+
+        <p className="register-register text-center mt-3">
+          Bereits registriert? <Link to="/login">Hier einloggen</Link>
+        </p>
       </div>
-      <p className="register-register">
-        Noch keinen Account? <a href="/register">Hier registrieren</a>
-      </p>
     </div>
   );
 }

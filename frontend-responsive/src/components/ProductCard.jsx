@@ -21,7 +21,7 @@ function ProductCard({
       </div>
       <h2 className="product-card__name">{product.name}</h2>
       <p className="product-card__price">{product.price}€</p>
-      
+
       {/* Quantity Counter – bleibt oben */}
       <div className="product-card__actions" onClick={(e) => e.stopPropagation()}>
         <QuantityCounter
@@ -31,13 +31,13 @@ function ProductCard({
           onIncrease={onIncrease}
         />
       </div>
-      
+
       {/* Full-Width Add-to-Cart Button unterhalb */}
       <button
         className="button button--primary product-card__button"
-        onClick={(e) => { 
-          e.stopPropagation(); 
-          onAddToCart(); 
+        onClick={(e) => {
+          e.stopPropagation();
+          onAddToCart();
         }}
       >
         In den Warenkorb

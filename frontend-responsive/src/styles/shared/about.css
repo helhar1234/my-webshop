@@ -1,142 +1,150 @@
 /* Allgemeiner Container */
 .about {
-    width: 100%;
-    padding: 2rem;
-    box-sizing: border-box;
-  }
-  
-  /* Hero Section */
-  .about__hero {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-  }
-  
-  .about__hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Hero Section */
+.about__hero {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.about__hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about__hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.about__hero-text h1 {
+  color: var(--text-charcoal);
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.about__hero-text p {
+  color: var(--text-charcoal);
+  font-size: 1.2rem;
+}
+
+/* Mission Section */
+.about__mission {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.about__mission h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-leaf-green);
+}
+
+.about__mission p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about__mission-image {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 5px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Über uns Section */
+.about__overview {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.about__overview h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-leaf-green);
+}
+
+.about__overview p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Team Section */
+.about__team {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.about__team h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-leaf-green);
+}
+
+.about__team-members {
+  margin: 0;
+  row-gap: 2rem;
+}
+
+.team-member {
+  max-width: 300px;
+  text-align: center;
+}
+
+.team-member__image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.team-member h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.team-member p {
+  font-size: 1rem;
+  color: #555;
+}
+
+@media (max-width: 768px) {
   .about__hero-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 2rem;
-    border-radius: 5px;
+    padding: 1rem;
   }
-  
+
   .about__hero-text h1 {
-    color: var(--text-charcoal);
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-  
-  .about__hero-text p {
-    color: var(--text-charcoal);
-    font-size: 1.2rem;
-  }
-  
-  /* Mission Section */
-  .about__mission {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding: 0 1rem;
-  }
-  
-  .about__mission h2 {
     font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--primary-leaf-green);
   }
-  
-  .about__mission p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .about__mission-image {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    border-radius: 5px;
-    margin: 0 auto;
-    display: block;
-  }
-  
-  /* Über uns Section */
-  .about__overview {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding: 0 1rem;
-  }
-  
-  .about__overview h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--primary-leaf-green);
-  }
-  
-  .about__overview p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  /* Team Section */
-  .about__team {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .about__team h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: var(--primary-leaf-green);
-  }
-  
-  /* Die Team-Mitglieder sollen in einer flexiblen Reihe dargestellt werden */
-  .about__team-members {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-  }
-  
-  /* Team-Mitglied: fixierte Größe, damit beide Bilder exakt gleich groß sind */
-  .team-member {
-    flex: 1 1 250px;
-    max-width: 300px;
-    text-align: center;
-  }
-  
+
   .team-member__image {
-    width: 100%;
-    height: 300px; /* Fixe Höhe */
-    object-fit: cover; /* Bild so skalieren, dass es den Container ausfüllt */
-    border-radius: 50%;
-    margin-bottom: 1rem;
+    height: 250px;
   }
-  
-  .team-member h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .team-member p {
-    font-size: 1rem;
-    color: #555;
-  }
-  
+}

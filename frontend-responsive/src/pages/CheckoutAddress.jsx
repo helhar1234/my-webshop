@@ -46,10 +46,10 @@ function CheckoutAddress() {
   };
 
   return (
-    <div className="checkout-container checkout-address">
-      <h1 className="checkout-address__title">Lieferadresse</h1>
-      <div className="address-form">
-        <div className="input-group">
+    <div className="checkout checkout__container checkout__address">
+      <h1 className="checkout__title">Lieferadresse</h1>
+      <div className="checkout__form">
+        <div className="checkout__form-group">
           <input
             name="firstName"
             placeholder="Vorname"
@@ -67,25 +67,25 @@ function CheckoutAddress() {
             required
           />
         </div>
-        <div className="input-group">
+        <div className="checkout__form-group">
           <input
             name="street"
             placeholder="Straße"
             value={localAddress.street || ""}
             onChange={handleChange}
-            className={`input input--street ${errors.street ? "error" : ""}`}
+            className={`input ${errors.street ? "error" : ""}`}
             required
           />
           <input
             name="houseNumber"
-            placeholder="Hausnr."
+            placeholder="Nr."
             value={localAddress.houseNumber || ""}
             onChange={handleChange}
-            className={`input input--house ${errors.houseNumber ? "error" : ""}`}
+            className={`input ${errors.houseNumber ? "error" : ""}`}
             required
           />
         </div>
-        <div className="input-group">
+        <div className="checkout__form-group">
           <input
             name="zip"
             placeholder="PLZ"
@@ -93,7 +93,7 @@ function CheckoutAddress() {
             onChange={handleChange}
             className={`input ${errors.zip ? "error" : ""}`}
             required
-            pattern="\d{4}"
+            pattern="\\d{4}"
             maxLength="4"
           />
           <input
@@ -105,13 +105,9 @@ function CheckoutAddress() {
             required
           />
         </div>
-        <div className="checkout-address__actions">
-          <button className="button button--danger" onClick={() => navigate("/")}>
-            Abbrechen
-          </button>
-          <button className="button button--primary" onClick={handleNext}>
-            Weiter
-          </button>
+        <div className="checkout__actions">
+          <button className="button button--danger" onClick={() => navigate("/")}>Abbrechen</button>
+          <button className="button button--primary" onClick={handleNext}>Weiter</button>
         </div>
       </div>
     </div>

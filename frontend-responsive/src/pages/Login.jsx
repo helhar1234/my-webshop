@@ -40,41 +40,42 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <h1 className="login-title">Login</h1>
-      <div className="login-form">
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-            if (e.target.value.trim() !== "") setUsernameError(false);
-          }}
-          className={`input ${usernameError ? "error" : ""}`}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Passwort"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            if (e.target.value.trim() !== "") setPasswordError(false);
-          }}
-          className={`input ${passwordError ? "error" : ""}`}
-          required
-        />
-        <button
-          className="button button--primary login-button"
-          onClick={handleLogin}
-        >
-          Login
-        </button>
+    <div className="d-flex justify-content-center align-items-center py-5">
+      <div className="login-container">
+        <h1 className="login-title">Login</h1>
+        <div className="login-form">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+              if (e.target.value.trim() !== "") setUsernameError(false);
+            }}
+            className={`input ${usernameError ? "error" : ""}`}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Passwort"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              if (e.target.value.trim() !== "") setPasswordError(false);
+            }}
+            className={`input ${passwordError ? "error" : ""}`}
+            required
+          />
+          <button
+            className="button button--primary login-button"
+            onClick={handleLogin}
+          >
+            Login
+          </button>
 
-        {error && <p className="login-error">{error}</p>}
-
-        <p className="login-register">
+          {error && <p className="login-error">{error}</p>}
+        </div>
+        <p className="login-register text-center mt-3">
           Noch keinen Account? <Link to="/register">Hier registrieren</Link>
         </p>
       </div>

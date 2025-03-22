@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import { CheckoutProvider } from "./context/CheckoutContext";
+import { ScrollToTop } from "./context/ScrollToTop";
 
 // Komponenten
 import Navbar from "./components/Navbar";
@@ -38,6 +39,8 @@ function App() {
         <CartProvider>
           <CheckoutProvider>
             <Navbar />
+          <ScrollToTop />
+
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/shop" element={<Shop />} />

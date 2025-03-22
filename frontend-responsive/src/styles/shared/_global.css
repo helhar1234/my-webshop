@@ -19,14 +19,13 @@
 
 /* Beispiel: Globaler Seitenhintergrund */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--text-font);
-    background: linear-gradient(135deg, #f7f7f7 0%, #ffffff 100%);
-    /* Optional: Leichte Textur (über ein semi-transparentes PNG oder CSS-Pattern)
+  margin: 0;
+  padding: 0;
+  font-family: var(--text-font);
+  background: linear-gradient(135deg, #f7f7f7 0%, #ffffff 100%);
+  /* Optional: Leichte Textur (über ein semi-transparentes PNG oder CSS-Pattern)
        background-image: url('/images/pattern.png'), linear-gradient(135deg, #f7f7f7 0%, #ffffff 100%);
        background-blend-mode: multiply;
     */
-    color: var(--text-charcoal);
-  }
-  
+  color: var(--text-charcoal);
+}

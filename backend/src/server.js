@@ -10,7 +10,7 @@ app.use(cookieParser());
 
 // 🛠️ CORS (Frontend & Cookies erlauben)
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: /http:\/\/localhost:\d+$/,
     credentials: true, // Damit Browser die Cookies auch mitschickt
     methods: ["GET", "POST", "PUT", "DELETE"]
 }));

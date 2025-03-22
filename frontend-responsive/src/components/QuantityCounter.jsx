@@ -31,6 +31,7 @@ function QuantityCounter({ value, onChange, onDecrease, onIncrease }) {
       </button>
     </div>
   );
+
 }
 
 export default QuantityCounter;
