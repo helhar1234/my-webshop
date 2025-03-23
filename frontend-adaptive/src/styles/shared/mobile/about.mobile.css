@@ -1,3 +1,126 @@
-@media (max-width: 768px) {
-    
-}
+@media (max-width: 480px) {
+    .about {
+      padding: 1.5rem 1rem;
+    }
+  
+    /* HERO SECTION */
+    .about__hero {
+      position: relative;
+      height: auto;
+      margin-bottom: 2rem;
+    }
+  
+    .about__hero-image {
+        width: 100vw;
+        height: 220px;
+        object-fit: cover;
+        margin-left: -1rem; /* gleicht Padding vom .about aus */
+        border-radius: 0;
+    }
+  
+    .about__hero-text {
+      margin-top: 1rem;
+      text-align: center;
+    }
+  
+    .about__hero-text h1 {
+      font-size: 1.5rem;
+      color: var(--primary-leaf-green);
+      margin-bottom: 0.5rem;
+    }
+  
+    .about__hero-text p {
+      font-size: 1rem;
+      color: var(--text-charcoal);
+      line-height: 1.5;
+    }
+  
+    /* MISSION SECTION */
+    .about__mission {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  
+    .about__mission h2 {
+      font-size: 1.5rem;
+      color: var(--primary-leaf-green);
+      margin-bottom: 1rem;
+    }
+  
+    .about__mission p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+  
+    .about__mission-image {
+        width: 100vw;
+        height: 220px;
+        object-fit: cover;
+        margin-left: -1rem; /* gleicht Padding vom .about aus */
+        border-radius: 0;
+    }
+  
+    /* ÜBER UNS SECTION */
+    .about__overview {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  
+    .about__overview h2 {
+      font-size: 1.5rem;
+      color: var(--primary-leaf-green);
+      margin-bottom: 1rem;
+    }
+  
+    .about__overview p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+  
+    /* TEAM SECTION */
+    .about__team {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  
+    .about__team h2 {
+      font-size: 2rem;
+      color: var(--primary-leaf-green);
+      margin-bottom: 2rem;
+    }
+  
+    .about__team-members {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  
+    .team-member__image {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.75rem;
+    }
+  
+    .team-member h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+  
+    .team-member p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+  }
+  

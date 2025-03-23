@@ -1,3 +1,57 @@
-@media (max-width: 768px) {
-    
+@media (max-width: 480px) {
+    .carousel {
+        width: 100vw;
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .carousel__slide {
+        width: 100vw;
+        height: 250px;
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 0.6s ease-in-out;
+        opacity: 0;
+    }
+
+    .carousel__slide.active {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    .carousel__overlay {
+        position: absolute;
+        top: 50%;
+        /* Vertikale Mitte */
+        left: 50%;
+        /* Horizontale Mitte */
+        transform: translate(-50%, -50%);
+        /* Ausgleich für beide Achsen */
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 1rem 1.5rem;
+        border-radius: 6px;
+        text-align: center;
+        color: #fff;
+        max-width: 90%;
+        box-sizing: border-box;
+    }
+
+
+    .carousel__overlay h2 {
+        font-size: 2rem;
+        margin: 0;
+        color: white;
+    }
+
+    .carousel__arrow {
+        display: none !important;
+        /* Verstecke Pfeile auf Mobile */
+    }
 }

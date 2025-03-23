@@ -45,9 +45,9 @@ function Footer() {
           {/* Newsletter Section */}
           <div className="footer__section footer__newsletter">
             <h2>Newsletter</h2>
-            <input type="email" placeholder="Enter Your Email" />
+            <input type="email" placeholder="Gib deine E-Mail ein..." />
             <br />
-            <button>Subscribe</button>
+            <button>Abonieren</button>
           </div>
         </div>
   
@@ -73,4 +73,3 @@ function Footer() {
   }
   
   export default Footer;
-  

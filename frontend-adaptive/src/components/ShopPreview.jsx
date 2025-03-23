@@ -3,12 +3,24 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "./ProductCard";
 import { useAuth } from "../context/AuthContext";
+import { ArrowRight } from "lucide-react";
 
 function ShopPreview() {
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
   const navigate = useNavigate();
+  const [maxProducts, setMaxProducts] = useState(10);
+
+  useEffect(() => {
+    const updateMaxProducts = () => {
+      setMaxProducts(window.innerWidth <= 480 ? 5 : 10);
+    };
+
+    updateMaxProducts(); // initial check
+    window.addEventListener("resize", updateMaxProducts);
+    return () => window.removeEventListener("resize", updateMaxProducts);
+  }, []);
 
   useEffect(() => {
     axios
@@ -75,7 +87,7 @@ function ShopPreview() {
   return (
     <div className="shop-preview">
       <div className="shop-preview__grid">
-        {products.slice(0, 10).map((product) => {
+        {products.slice(0, maxProducts).map((product) => {
           const quantity = quantities[product.id] ?? 1;
           return (
             <ProductCard
@@ -95,7 +107,8 @@ function ShopPreview() {
       </div>
       <div className="shop-preview__view-all">
         <button className="button button--primary" onClick={handleViewAll}>
-          Weitere Produkte
+          <span>Weitere Produkte</span>
+          <ArrowRight size={18} className="product-card__icon" />
         </button>
       </div>
     </div>

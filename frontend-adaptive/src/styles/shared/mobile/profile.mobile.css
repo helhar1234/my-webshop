@@ -1,3 +1,49 @@
-@media (max-width: 768px) {
-    
-}
+/* profile.mobile.css */
+@media (max-width: 480px) {
+    .profile {
+      padding: 2rem 1.5rem;
+      margin: 2rem auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+  
+    .profile__header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+  
+    .profile__image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+  
+    .profile__title {
+      font-size: 1.8rem;
+      color: var(--text-charcoal);
+      margin: 0;
+    }
+  
+    .profile__info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 1rem;
+      color: var(--text-charcoal);
+    }
+  
+    .profile__logout {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+  }
+  

@@ -19,7 +19,6 @@
 @import url("./notebook/checkout.notebook.css");
 @import url("./notebook/shop.notebook.css");
 
-@import url("./mobile/navbar.mobile.css");
 @import url("./mobile/footer.mobile.css");
 @import url("./mobile/carousel.mobile.css");
 @import url("./mobile/about.mobile.css");
@@ -27,11 +26,11 @@
 @import url("./mobile/preview.mobile.css");
 @import url("./mobile/login.mobile.css");
 @import url("./mobile/profile.mobile.css");
-@import url("./mobile/register.mobile.css");
 @import url("./mobile/detail.mobile.css");
 @import url("./mobile/cart.mobile.css");
 @import url("./mobile/checkout.mobile.css");
 @import url("./mobile/shop.mobile.css");
+@import url("./mobile/contact.mobile.css");
 /* Beispiel: Globaler Seitenhintergrund */
 body {
     margin: 0;

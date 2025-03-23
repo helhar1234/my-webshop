@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
@@ -16,7 +16,7 @@ function Register() {
   const handleRegister = async () => {
     setLoading(true);
     setMessage("");
-    
+
     // Validierung: Felder müssen ausgefüllt sein
     let valid = true;
     if (username.trim() === "") {
@@ -92,7 +92,7 @@ function Register() {
         {message && <p className="register-error">{message}</p>}
       </div>
       <p className="register-register">
-        Noch keinen Account? <a href="/register">Hier registrieren</a>
+        Bereits registriert? <Link to="/login">Hier einloggen</Link>
       </p>
     </div>
   );

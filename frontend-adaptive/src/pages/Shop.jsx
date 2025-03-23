@@ -34,6 +34,7 @@ function Shop() {
           data.sort((a, b) => b.price - a.price);
         }
         setProducts(data);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       })
       .catch((error) => console.error("Error fetching products:", error));
   }, [location.search, sortOrder]);

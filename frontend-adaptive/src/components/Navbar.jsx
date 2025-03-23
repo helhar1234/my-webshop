@@ -42,7 +42,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="notebook-nav navbar">
       {/* Brand-Bereich */}
       <div className="navbar__brand">
         <img

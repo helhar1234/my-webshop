@@ -1,0 +1,43 @@
+/* contact.mobile.css */
+@media (max-width: 480px) {
+    .contact-form-container {
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+  
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  
+    .contact-form .input,
+    .contact-form textarea {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.75rem;
+      border-radius: 4px;
+      resize: vertical;
+      min-height: 40px;
+    }
+  
+    .contact-form textarea {
+      min-height: 120px;
+    }
+  
+    .contact-form button {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+  
+    .contact-success {
+      color: green;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+  }
+  

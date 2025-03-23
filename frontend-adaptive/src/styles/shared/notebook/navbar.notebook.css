@@ -123,4 +123,8 @@
     cursor: pointer;
     color: var(--text-charcoal);
   }
+
+  .mobile-nav {
+    display: none !important;
+  }
 }

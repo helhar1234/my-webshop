@@ -7,6 +7,7 @@ import { ScrollToTop } from "./context/ScrollToTop";
 
 // Komponenten
 import Navbar from "./components/Navbar";
+import NavbarMobile from "./components/NavbarMobile";
 import Footer from "./components/Footer";
 
 // Seiten
@@ -39,6 +40,7 @@ function App() {
         <CartProvider>
           <CheckoutProvider>
             <Navbar />
+            <NavbarMobile />
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />

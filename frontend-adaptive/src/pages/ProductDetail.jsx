@@ -72,9 +72,11 @@ function ProductDetail() {
           />
         </div>
         <div className="product-detail__info">
-          <h1 className="product-detail__name">{product.name}</h1>
-          <p className="product-detail__price">Preis: {product.price} €</p>
-          <p className="product-detail__description">{product.description}</p>
+          <div className="product-detail__top">
+            <h1 className="product-detail__name">{product.name}</h1>
+            <p className="product-detail__price">Preis: {product.price} €</p>
+
+          </div><p className="product-detail__description">{product.description}</p>
           <div className="product-detail__counter">
             <QuantityCounter
               value={quantity}

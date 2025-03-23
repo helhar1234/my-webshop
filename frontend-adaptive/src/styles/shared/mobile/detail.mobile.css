@@ -1,3 +1,112 @@
-@media (max-width: 768px) {
-    
-}
+@media (max-width: 480px) {
+    .product-detail {
+      padding: 1rem;
+      background-color: #fff;
+    }
+  
+    .product-detail__container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    .product-detail__image {
+      width: 100%;
+      max-height: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #f7f7f7;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+    }
+  
+    .product-detail__info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .product-detail__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .product-detail__name {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--text-charcoal);
+      margin: 0;
+      flex: 1;
+    }
+  
+    .product-detail__price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--primary-leaf-green);
+      margin: 0;
+      white-space: nowrap;
+    }
+  
+    .product-detail__description {
+      font-size: 1rem;
+      color: var(--text-charcoal);
+      line-height: 1.5;
+      margin: 0.5rem 0;
+    }
+  
+    .product-detail__interaction {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+  
+    .product-detail__counter {
+        flex-shrink: 0;
+        animation: slideIn 0.3s ease;
+        margin: 0 auto;
+    }
+  
+    .product-detail__add-to-cart {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+  
+    .product-detail__add-to-cart:active {
+      transform: scale(0.97);
+      background-color: var(--primary-lime-green);
+    }
+  
+    .product-detail__preview {
+      margin-top: 2rem;
+  
+      h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: var(--text-charcoal);
+      }
+    }
+  
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+  
