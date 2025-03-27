@@ -1,4 +1,20 @@
 services:
+  - type: pserv
+    name: db
+    env: docker
+    repo: https://github.com/helhar1234/my-webshop
+    dockerfilePath: db/Dockerfile
+    envVars:
+      - key: POSTGRES_USER
+        value: admin
+      - key: POSTGRES_PASSWORD
+        value: secret
+      - key: POSTGRES_DB
+        value: webshop
+      - key: DB_PORT
+        value: "5432"
+    plan: free
+
   - type: web
     name: backend
     env: docker
@@ -8,11 +24,17 @@ services:
       - key: DB_HOST
         value: db
       - key: DB_USER
-        value: YOUR_DB_USER
+        value: admin
       - key: DB_PASS
-        value: YOUR_DB_PASS
+        value: secret
       - key: DB_NAME
-        value: YOUR_DB_NAME
+        value: webshop
+      - key: DB_PORT
+        value: "5432"
+      - key: BACKEND_PORT
+        value: "5000"
+      - key: JWT_SECRET
+        value: mysecretkey
     plan: free
     healthCheckPath: /
 
@@ -21,6 +43,9 @@ services:
     env: docker
     repo: https://github.com/helhar1234/my-webshop
     dockerfilePath: frontend-responsive/Dockerfile
+    envVars:
+      - key: FRONTEND_PORT
+        value: "80"
     plan: free
 
   - type: web
@@ -28,18 +53,15 @@ services:
     env: docker
     repo: https://github.com/helhar1234/my-webshop
     dockerfilePath: frontend-adaptive/Dockerfile
-    plan: free
-
-  - type: pserv
-    name: db
-    env: docker
-    repo: https://github.com/helhar1234/my-webshop
-    dockerfilePath: db/Dockerfile
     envVars:
-      - key: POSTGRES_USER
-        value: YOUR_DB_USER
-      - key: POSTGRES_PASSWORD
-        value: YOUR_DB_PASS
-      - key: POSTGRES_DB
-        value: YOUR_DB_NAME
+      - key: FRONTEND_PORT
+        value: "80"
+      - key: DB_HOST
+        value: db
+      - key: DB_USER
+        value: admin
+      - key: DB_PASS
+        value: secret
+      - key: DB_NAME
+        value: webshop
     plan: free
