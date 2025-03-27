@@ -9,6 +9,7 @@ import { ScrollToTop } from "./context/ScrollToTop";
 import Navbar from "./components/Navbar";
 import NavbarMobile from "./components/NavbarMobile";
 import Footer from "./components/Footer";
+import ScrollToTopMobile from "./context/ScrollToTopMobile";
 
 // Seiten
 import Home from "./pages/Home";
@@ -58,6 +59,7 @@ function App() {
               <Route path="/checkout/summary" element={<CheckoutSummary />} />
             </Routes>
             <Footer />
+            <ScrollToTopMobile />
           </CheckoutProvider>
         </CartProvider>
       </AuthProvider>

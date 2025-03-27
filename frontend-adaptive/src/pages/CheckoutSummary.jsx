@@ -48,9 +48,9 @@ function CheckoutSummary() {
         })}
       </ul>
         <div className="checkout-overview__summary">
-          <p>
-            Gesamt: <span className="total-amount">{totalPrice.toFixed(2)}€</span>
-          </p>
+          <p className="total">
+            Gesamt: 
+          </p><span className="total-amount">{totalPrice.toFixed(2)}€</span>
         </div>
       </div>
 

@@ -63,6 +63,10 @@
     display: none;
   }
 
+  .product-card__button {
+    display: none;
+  }
+  
   .product-card__mobile-view {
     display: inline-flex;
     align-items: center;

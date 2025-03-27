@@ -1,3 +1,161 @@
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+    .checkout-container {
+      padding: 1rem;
+      background-color: #fff;
+  
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: var(--text-charcoal);
+      }
+  
+      .cart__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+  
+      .cart__item {
+        display: flex;
+        gap: 1rem;
+        background: #f9f9f9;
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        position: relative;
+        align-items: flex-start;
+      }
     
-}
+      .cart__item-image img {
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+        border-radius: 8px;
+        background-color: #fff;
+      }
+    
+      .cart__item-info {
+        flex: 1;
+      }
+    
+      .cart__item-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin: 0 0 0.25rem;
+      }
+    
+      .cart__item-quantity,
+      .cart__item-price,
+      .cart__item-total {
+        font-size: 0.95rem;
+        color: var(--text-charcoal);
+        margin: 0.15rem 0;
+      }
+    
+      .cart__item-remove {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: none;
+        border: none;
+        color: var(--primary-leaf-green);
+        font-size: 0.9rem;
+        text-decoration: underline;
+        cursor: pointer;
+        top: 30%;
+      }
+  
+      .checkout-overview__summary,
+      .checkout-summary__summary {
+        margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 1rem;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+        .total {
+            font-size: 1.3em;
+            margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      unicode-bidi: isolate;
+        }
+      }
+
+      .total-amount {
+        color: var(--primary-leaf-green);
+        display: block;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      unicode-bidi: isolate;
+      font-size: 1.3em;
+      }
+  
+      .checkout-overview__actions,
+      .checkout-address__actions,
+      .checkout-payment__actions,
+      .checkout-summary__actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+      }
+  
+      .address-form,
+      .payment-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .address-form .input-group {
+        display: flex;
+        gap: 1rem;
+      }
+      
+      /* Der Straßenname soll breiter sein als die Hausnummer */
+      .input--street {
+        flex: 3;
+      }
+      
+      .input--house {
+        flex: 1;
+      }
+  
+      .input-group,
+      .payment-group {
+        display: flex;
+        gap: 0.75rem;
+      }
+  
+      .summary-section {
+        margin-top: 1.5rem;
+        background-color: #f5f5f5;
+        padding: 1rem;
+        border-radius: 8px;
+  
+        h2 {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+          color: var(--text-charcoal);
+        }
+  
+        p {
+          margin: 0.3rem 0;
+          font-size: 0.95rem;
+        }
+      }
+  
+      .masked-card {
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+    }
+  }
+  

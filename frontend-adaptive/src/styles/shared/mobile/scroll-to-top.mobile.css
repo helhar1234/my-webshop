@@ -1,0 +1,33 @@
+@media (max-width: 480px) {
+  .scroll-to-top-mobile {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.2rem;
+    background-color: var(--primary-leaf-green);
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.75rem;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: var(--primary-lime-green);
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    svg {
+      stroke: white;
+    }
+  }
+}

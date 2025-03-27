@@ -31,6 +31,7 @@
 @import url("./mobile/checkout.mobile.css");
 @import url("./mobile/shop.mobile.css");
 @import url("./mobile/contact.mobile.css");
+@import url("./mobile/scroll-to-top.mobile.css");
 /* Beispiel: Globaler Seitenhintergrund */
 body {
     margin: 0;

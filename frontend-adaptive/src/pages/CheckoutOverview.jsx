@@ -42,13 +42,12 @@ function CheckoutOverview() {
                 />
               </div>
               <div className="cart__item-info">
-                <p className="cart__item-name">Produkt: {item.product_name}</p>
-                <p className="cart__item-quantity">Menge: {item.quantity}</p>
-                <p className="cart__item-price">Preis pro Stück: {item.product_price} €</p>
-                <p className="cart__item-total">Gesamt: {total} €</p>
-              </div>
+                  <p className="cart__item-name">{item.product_name}</p>
+                  <p className="cart__item-quantity">Menge: {item.quantity}</p>
+                  <p className="cart__item-total">Gesamt: {total} €</p>
+                </div>
               <button
-                className="button button--danger cart__item-remove"
+                className="cart__item-remove"
                 onClick={() => handleRemove(item.product_id)}
               >
                 Entfernen

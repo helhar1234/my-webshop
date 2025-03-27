@@ -70,4 +70,8 @@
   .product-card__button:hover {
     background-color: var(--primary-lime-green);
   }
+
+  .product-card__mobile-view {
+    display: none;
+  }
 }

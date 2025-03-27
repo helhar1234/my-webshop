@@ -38,7 +38,7 @@ function ProductCard({
             onChange={(newVal) => onQuantityChange(newVal)}
             onDecrease={onDecrease}
             onIncrease={onIncrease}
-          />
+          /></div>
           <button
             className="button button--primary product-card__button"
             onClick={(e) => {
@@ -48,7 +48,6 @@ function ProductCard({
           >
             <span>In den Warenkorb</span>
           </button>
-        </div>
 
         <Link
           to={`/product/${product.id}`}

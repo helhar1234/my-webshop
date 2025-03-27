@@ -59,6 +59,10 @@ function Cart() {
     return <p>Lädt...</p>;
   }
 
+  const handleProductClick = (productId) => {
+    navigate(`/product/${productId}`);
+  };
+
   return (
     <div className="cart">
       <h1 className="cart__title">Warenkorb</h1>
@@ -78,14 +82,13 @@ function Cart() {
                     height="40"
                   />
                 </div>
-                <div className="cart__item-info">
-                  <p className="cart__item-name">Produkt: {item.product_name}</p>
+                <div className="cart__item-info" onClick={() => handleProductClick(item.product_id)}>
+                  <p className="cart__item-name">{item.product_name}</p>
                   <p className="cart__item-quantity">Menge: {item.quantity}</p>
-                  <p className="cart__item-price">Preis pro Stück: {item.product_price} €</p>
                   <p className="cart__item-total">Gesamt: {total} €</p>
                 </div>
                 <button
-                  className="button button--danger cart__item-remove"
+                  className="cart__item-remove "
                   onClick={() => removeFromCart(item.product_id)}
                 >
                   Entfernen
