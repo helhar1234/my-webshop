@@ -21,8 +21,6 @@ services:
     env: docker
     repo: https://github.com/helhar1234/my-webshop
     dockerfilePath: frontend-responsive/Dockerfile
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
     plan: free
 
   - type: web
@@ -30,8 +28,6 @@ services:
     env: docker
     repo: https://github.com/helhar1234/my-webshop
     dockerfilePath: frontend-adaptive/Dockerfile
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
     plan: free
 
   - type: pserv
