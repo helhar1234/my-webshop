@@ -1,0 +1,53 @@
+services:
+  - type: web
+    name: backend
+    env: docker
+    repo: https://github.com/helhar1234/my-webshop
+    dockerfilePath: backend/Dockerfile
+    envVars:
+      - key: DB_HOST
+        value: db
+      - key: DB_USER
+        value: YOUR_DB_USER
+      - key: DB_PASS
+        value: YOUR_DB_PASS
+      - key: DB_NAME
+        value: YOUR_DB_NAME
+    plan: free
+    healthCheckPath: /
+
+  - type: web
+    name: frontend-responsive
+    env: docker
+    repo: https://github.com/helhar1234/my-webshop
+    dockerfilePath: frontend-responsive/Dockerfile
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    plan: free
+
+  - type: web
+    name: frontend-adaptive
+    env: docker
+    repo: https://github.com/helhar1234/my-webshop
+    dockerfilePath: frontend-adaptive/Dockerfile
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    plan: free
+
+  - type: pserv
+    name: db
+    env: docker
+    repo: https://github.com/helhar1234/my-webshop
+    dockerfilePath: db/Dockerfile
+    envVars:
+      - key: POSTGRES_USER
+        value: YOUR_DB_USER
+      - key: POSTGRES_PASSWORD
+        value: YOUR_DB_PASS
+      - key: POSTGRES_DB
+        value: YOUR_DB_NAME
+    plan: free
+    disk:
+      name: data
+      mountPath: /var/lib/postgresql/data
+      sizeGB: 1
