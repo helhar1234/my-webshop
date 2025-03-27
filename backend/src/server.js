@@ -36,5 +36,5 @@ app.use('/api/cart', cartRouter);
 app.use('/api/checkout', checkoutRouter);
 app.use('/api/search', searchRouter);
 
-const PORT = process.env.BACKEND_PORT || 5000;
+const PORT = process.env.PORT || process.env.BACKEND_PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Backend läuft auf http://localhost:${PORT}`));
