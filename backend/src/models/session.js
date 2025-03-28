@@ -8,7 +8,6 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-// 🛠️ Session abrufen
 const getSessionById = async (sid) => {
   const result = await pool.query(
     "SELECT sess, expire FROM session WHERE sid = $1",
@@ -19,17 +18,14 @@ const getSessionById = async (sid) => {
   }
 
   const { sess, expire } = result.rows[0];
-  // Prüfen, ob abgelaufen
   if (new Date(expire) < new Date()) {
-    // Session ist abgelaufen -> aus DB löschen
     await pool.query("DELETE FROM session WHERE sid = $1", [sid]);
     return null;
   }
 
-  return sess; // oder JSON.parse(sess), wenn du es als Text speicherst
+  return sess;
 };
 
-// 🛠️ Session speichern oder aktualisieren
 const saveSession = async (sid, sessionData, expireAt) => {
   await pool.query(
     `INSERT INTO session (sid, sess, expire) 
@@ -40,7 +36,6 @@ const saveSession = async (sid, sessionData, expireAt) => {
   );
 };
 
-// 🛠️ Session löschen
 const deleteSessionById = async (sid) => {
   await pool.query("DELETE FROM session WHERE sid = $1", [sid]);
 };

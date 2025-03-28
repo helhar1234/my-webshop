@@ -24,7 +24,6 @@ const authHeader = {
     setLoading(true);
     setMessage("");
 
-    // Validierung: Felder müssen ausgefüllt sein
     let valid = true;
     if (username.trim() === "") {
       setUsernameError(true);
@@ -50,7 +49,6 @@ const authHeader = {
         { username, password },
         authHeader
       );
-      // Automatischer Login nach erfolgreicher Registrierung
       await login(username, password);
       navigate("/profile");
     } catch (error) {

@@ -8,7 +8,6 @@ function Navbar() {
   const [searchActive, setSearchActive] = useState(false);
   const navigate = useNavigate();
 
-  // Führt die Suche aus und klappt die Suchleiste zusammen
   const executeSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim() !== "") {
@@ -17,24 +16,19 @@ function Navbar() {
     setSearchActive(false);
   };
 
-  // Beim Klick auf das Such-Icon:
   const handleSearchIconClick = (e) => {
     e.preventDefault();
-    // Wenn die Suchleiste nicht aktiv ist, öffne sie
     if (!searchActive) {
       setSearchActive(true);
     } else {
-      // Ist sie aktiv und das Feld nicht leer → suche ausführen
       if (searchTerm.trim() !== "") {
         executeSearch(e);
       } else {
-        // Ist sie aktiv aber leer, klappe sie wieder zusammen
         setSearchActive(false);
       }
     }
   };
 
-  // Beim Verlassen des Input-Feldes, falls es leer ist, zusammenklappen
   const handleInputBlur = () => {
     if (searchTerm.trim() === "") {
       setSearchActive(false);
@@ -43,7 +37,6 @@ function Navbar() {
 
   return (
     <nav className="notebook-nav navbar">
-      {/* Brand-Bereich */}
       <div className="navbar__brand">
         <img
           src="/images/logos/logo_nav.png"
@@ -55,7 +48,6 @@ function Navbar() {
         </Link>
       </div>
 
-      {/* Menü */}
       <ul className="navbar__menu">
         <li className="navbar__item">
           <Link to="/">Home</Link>
@@ -68,7 +60,6 @@ function Navbar() {
         </li>
       </ul>
 
-      {/* Actions: Suchleiste, Such-Button & Icons */}
       <div className="navbar__actions">
         <form
           onSubmit={executeSearch}

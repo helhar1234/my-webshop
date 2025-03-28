@@ -12,7 +12,6 @@ function Login() {
   const { login } = useAuth();
 
   const handleLogin = async () => {
-    // Validierung: Beide Felder müssen ausgefüllt sein
     let valid = true;
     if (username.trim() === "") {
       setUsernameError(true);

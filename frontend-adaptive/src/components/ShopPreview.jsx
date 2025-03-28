@@ -24,7 +24,7 @@ const authHeader = {
       setMaxProducts(window.innerWidth <= 480 ? 5 : 10);
     };
 
-    updateMaxProducts(); // initial check
+    updateMaxProducts();
     window.addEventListener("resize", updateMaxProducts);
     return () => window.removeEventListener("resize", updateMaxProducts);
   }, []);
@@ -40,7 +40,6 @@ const authHeader = {
       );
   }, []);
 
-  // Increase quantity
   const handleIncrease = (productId) => {
     setQuantities((prev) => {
       const current = prev[productId] ?? 1;
@@ -48,7 +47,6 @@ const authHeader = {
     });
   };
 
-  // Decrease quantity
   const handleDecrease = (productId) => {
     setQuantities((prev) => {
       const current = prev[productId] ?? 1;
@@ -63,7 +61,6 @@ const authHeader = {
     }));
   };
 
-  // Add product to cart
   const handleAddToCart = async (productId) => {
     if (!user) {
       navigate("/login");
@@ -81,12 +78,10 @@ const authHeader = {
     }
   };
 
-  // Navigate to product detail
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
   };
 
-  // Button: View All Products
   const handleViewAll = () => {
     navigate("/shop");
   };

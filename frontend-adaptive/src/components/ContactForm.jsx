@@ -8,11 +8,9 @@ function ContactForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Hier könnte ein API-Call hinzugefügt werden
         console.log("Kontaktformular gesendet:", { name, email, message });
         setSuccess(true);
 
-        // Formularfelder leeren
         setName("");
         setEmail("");
         setMessage("");

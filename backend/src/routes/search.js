@@ -10,9 +10,8 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-// 🔍 Produktsuche-Route
 router.get("/", async (req, res) => {
-  const { query } = req.query; // Holt den Suchbegriff aus der URL (z. B. /api/search?query=tomate)
+  const { query } = req.query;
 
   if (!query) {
     return res.status(400).json({ error: "Bitte einen Suchbegriff angeben." });
@@ -21,7 +20,6 @@ router.get("/", async (req, res) => {
   try {
     console.log(`🔍 Suche nach: ${query}`);
 
-    // SQL-Query, um nach Produkten zu suchen (Case-Insensitive)
     const result = await pool.query(
       `SELECT * FROM products WHERE LOWER(name) LIKE LOWER($1) OR LOWER(description) LIKE LOWER($1)`,
       [`%${query}%`]

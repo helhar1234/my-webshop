@@ -8,7 +8,6 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-// 🛠️ Produkt zum Warenkorb hinzufügen oder Menge erhöhen
 const addToCart = async (userId, productId, quantity) => {
   await pool.query(
     `INSERT INTO cart (user_id, product_id, quantity) 
@@ -19,8 +18,6 @@ const addToCart = async (userId, productId, quantity) => {
   );
 };
 
-// 🛠️ Warenkorb für einen Benutzer abrufen
-// models/cart.js
 const getCartByUserId = async (userId) => {
   const result = await pool.query(
     `
@@ -38,7 +35,6 @@ const getCartByUserId = async (userId) => {
   return result.rows;
 };
 
-// 🛠️ Warenkorb eines Benutzers leeren
 const clearCartByUserId = async (userId) => {
   await pool.query("DELETE FROM cart WHERE user_id = $1", [userId]);
 };

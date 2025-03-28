@@ -14,7 +14,6 @@ const authHeader = {
   },
 };
 
-    // 🛠️ Warenkorb aus der Session laden
     useEffect(() => {
         const fetchCart = async () => {
             try {
@@ -31,7 +30,6 @@ const authHeader = {
         fetchCart();
     }, []);
 
-    // 🛠️ Produkt zum Warenkorb hinzufügen
     const addItem = async (productId, quantity) => {
         try {
             await axios.post(`${API_BASE_URL}/cart/add`,
@@ -46,7 +44,6 @@ const authHeader = {
         }
     };
 
-    // 🛠️ Warenkorb leeren
     const clearCart = async () => {
         try {
             await axios.delete(`${API_BASE_URL}/cart/clear`, authHeader);
@@ -57,7 +54,7 @@ const authHeader = {
     };
 
     if (loading) {
-        return <p>Lädt...</p>;  // Ladeanzeige während der Warenkorb-Abruf läuft
+        return <p>Lädt...</p>;
     }
 
     return (
@@ -67,5 +64,4 @@ const authHeader = {
     );
 };
 
-// 🛠️ Hook zum einfachen Zugriff auf den Warenkorb
 export const useCart = () => useContext(CartContext);

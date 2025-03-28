@@ -38,7 +38,6 @@ function Cart() {
   const removeFromCart = async (productId) => {
     try {
       await axios.delete(`${API_BASE_URL}/cart/remove/${productId}`, authHeader);
-      // Warenkorb erneut abrufen
       const response = await axios.get(`${API_BASE_URL}/cart`, authHeader);
       setCart(response.data);
     } catch (error) {

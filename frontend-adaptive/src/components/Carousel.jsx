@@ -10,7 +10,7 @@ const slides = [
 const Carousel = () => {
   const [current, setCurrent] = useState(0);
   const timeoutRef = useRef(null);
-  const delay = 5000; // 5 Sekunden
+  const delay = 5000;
 
   useEffect(() => {
     resetTimeout();

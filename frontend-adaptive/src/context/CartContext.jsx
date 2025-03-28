@@ -15,7 +15,6 @@ export const CartProvider = ({ children }) => {
   };
 
 
-  // 🛠️ Warenkorb aus der Session laden
   useEffect(() => {
     const fetchCart = async () => {
       try {
@@ -33,7 +32,6 @@ export const CartProvider = ({ children }) => {
   }, []);
 
 
-  // 🛠️ Produkt zum Warenkorb hinzufügen
   const addItem = async (productId, quantity) => {
     try {
       await axios.post(`${API_BASE_URL}/cart/add`,
@@ -49,7 +47,6 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // 🛠️ Warenkorb leeren
   const clearCart = async () => {
     try {
       await axios.delete(`${API_BASE_URL}/cart/clear`, authHeader);
@@ -60,7 +57,7 @@ export const CartProvider = ({ children }) => {
   };
 
   if (loading) {
-    return <p>Lädt...</p>;  // Ladeanzeige während der Warenkorb-Abruf läuft
+    return <p>Lädt...</p>;
   }
 
   return (
@@ -70,5 +67,4 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// 🛠️ Hook zum einfachen Zugriff auf den Warenkorb
 export const useCart = () => useContext(CartContext);

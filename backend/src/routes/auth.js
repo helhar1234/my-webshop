@@ -5,7 +5,6 @@ const { getUserByUsername, createUser } = require("../models/user");
 
 const router = express.Router();
 
-// 🔐 Middleware: Token prüfen
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader?.split(" ")[1];
@@ -19,7 +18,6 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// ✅ Registrierung
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
@@ -32,7 +30,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// ✅ Login
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -44,7 +41,6 @@ router.post("/login", async (req, res) => {
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) return res.status(401).json({ error: "Falsches Passwort" });
 
-    // 🎟 JWT generieren
     const token = jwt.sign(
       { userId: user.id, username: user.username },
       process.env.JWT_SECRET,
@@ -58,7 +54,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// 🔐 Protected Route: Profil
 router.get("/profile", authenticateToken, (req, res) => {
   res.json({
     username: req.user.username,
@@ -66,9 +61,7 @@ router.get("/profile", authenticateToken, (req, res) => {
   });
 });
 
-// 🧹 Logout (optional – Token bleibt einfach ungültig nach Ablauf)
 router.post("/logout", (req, res) => {
-  // Bei JWT ist Logout optional – Token wird einfach im Frontend gelöscht
   res.json({ message: "Logout erfolgreich (Token clientseitig löschen)" });
 });
 

@@ -28,7 +28,6 @@ const authHeader = {
       );
   }, []);
 
-  // Increase quantity
   const handleIncrease = (productId) => {
     setQuantities((prev) => {
       const current = prev[productId] ?? 1;
@@ -36,7 +35,6 @@ const authHeader = {
     });
   };
 
-  // Decrease quantity
   const handleDecrease = (productId) => {
     setQuantities((prev) => {
       const current = prev[productId] ?? 1;
@@ -51,7 +49,6 @@ const authHeader = {
     }));
   };
 
-  // Add product to cart
   const handleAddToCart = async (productId) => {
     if (!user) {
       navigate("/login");
@@ -69,19 +66,16 @@ const authHeader = {
     }
   };
 
-  // Navigate to product detail
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
   };
 
-  // Button: View All Products
   const handleViewAll = () => {
     navigate("/shop");
   };
 
   return (
     <div className="shop-preview container">
-      {/* Desktop Grid */}
       <div className="d-none d-md-grid shop-preview__grid">
         {products.slice(0, 10).map((product) => {
           const quantity = quantities[product.id] ?? 1;
@@ -103,7 +97,6 @@ const authHeader = {
         })}
       </div>
 
-      {/* Mobile Scroll */}
       <div className="d-md-none shop-preview__scroll">
         {products.slice(0, 10).map((product) => {
           const quantity = quantities[product.id] ?? 1;

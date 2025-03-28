@@ -4,7 +4,6 @@ require("dotenv").config();
 
 const router = express.Router();
 
-// PostgreSQL-Verbindung
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -13,12 +12,10 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-// Produkte abrufen
 router.get("/", async (req, res) => {
   try {
     console.log("🔄 Verbindung zur Datenbank...");
     const result = await pool.query("SELECT * FROM products");
-    //console.log("✅ Produkte erfolgreich geladen:", result.rows);
     res.json(result.rows);
   } catch (error) {
     console.error("❌ Fehler beim Abrufen der Produkte:", error.message);

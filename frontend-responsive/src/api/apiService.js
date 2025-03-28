@@ -1,14 +1,12 @@
 import axios from "axios";
 
-const API_URL = "${API_BASE_URL}"; // Dein Backend-Server
+const API_URL = "${API_BASE_URL}";
 
-// API Client mit Session-Cookies
 const apiClient = axios.create({
   baseURL: API_URL,
-  withCredentials: true, // Wichtig für Cookies (Session)
+  withCredentials: true,
 });
 
-// 🔹 Authentifizierung
 export const registerUser = async (username, password) => {
   const response = await apiClient.post("/auth/register", {
     username,
@@ -31,19 +29,16 @@ export const getProfile = async () => {
   return response.data;
 };
 
-// 🔹 Produkte abrufen
 export const fetchProducts = async () => {
   const response = await apiClient.get("/products");
   return response.data;
 };
 
-// 🔹 Produktsuche
 export const searchProducts = async (query) => {
   const response = await apiClient.get(`/search?query=${query}`);
   return response.data;
 };
 
-// 🔹 Warenkorb-Handling
 export const addToCart = async (productId, quantity) => {
   const response = await apiClient.post("/cart/add", { productId, quantity });
   return response.data;
@@ -59,7 +54,6 @@ export const clearCart = async () => {
   return response.data;
 };
 
-// 🔹 Checkout
 export const checkout = async (cart) => {
   const response = await apiClient.post("/checkout", { cart });
   return response.data;

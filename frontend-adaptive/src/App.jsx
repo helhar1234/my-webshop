@@ -5,13 +5,11 @@ import { CartProvider } from "./context/CartContext";
 import { CheckoutProvider } from "./context/CheckoutContext";
 import { ScrollToTop } from "./context/ScrollToTop";
 
-// Komponenten
 import Navbar from "./components/Navbar";
 import NavbarMobile from "./components/NavbarMobile";
 import Footer from "./components/Footer";
 import ScrollToTopMobile from "./context/ScrollToTopMobile";
 
-// Seiten
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Contact from "./pages/Contact";
@@ -26,13 +24,10 @@ import CheckoutAddress from "./pages/CheckoutAddress";
 import CheckoutPayment from "./pages/CheckoutPayment";
 import CheckoutSummary from "./pages/CheckoutSummary";
 
-// Shared-Styles werden IMMER geladen
 import "./styles/shared/_global.css";
 
 function App() {
-  // HIER stellst du dein Design-Modus ein (z.B. "adaptive" oder "responsive")
   const designMode = "adaptive";
-  // const designMode = "responsive"; // einfach umschalten
 
 
   return (

@@ -12,7 +12,7 @@ function Register() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuth(); // Auto-Login nach Registrierung
+  const { login } = useAuth();
   const token = localStorage.getItem("token");
   const authHeader = {
     headers: {
@@ -24,7 +24,6 @@ function Register() {
     setLoading(true);
     setMessage("");
 
-    // Validierung: Felder müssen ausgefüllt sein
     let valid = true;
     if (username.trim() === "") {
       setUsernameError(true);
@@ -50,7 +49,6 @@ function Register() {
         { username, password },
         authHeader
       );
-      // Automatischer Login nach erfolgreicher Registrierung
       await login(username, password);
       navigate("/profile");
     } catch (error) {

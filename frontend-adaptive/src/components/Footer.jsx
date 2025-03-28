@@ -1,9 +1,7 @@
 function Footer() {
     return (
       <footer className="footer">
-        {/* Footer Top: Address, Social Links, Newsletter */}
         <div className="footer__top">
-          {/* Address Section */}
           <div className="footer__section footer__address">
             <h2>Address</h2>
             <p>
@@ -17,7 +15,6 @@ function Footer() {
             </p>
           </div>
   
-          {/* Social Links Section */}
           <div className="footer__section footer__social">
             <h2>Social Links</h2>
             <p>
@@ -42,7 +39,6 @@ function Footer() {
             </p>
           </div>
   
-          {/* Newsletter Section */}
           <div className="footer__section footer__newsletter">
             <h2>Newsletter</h2>
             <input type="email" placeholder="Gib deine E-Mail ein..." />
@@ -51,7 +47,6 @@ function Footer() {
           </div>
         </div>
   
-        {/* Footer Middle: Google Maps */}
         <div className="footer__map">
           <h2>Our Location</h2>
           <iframe
@@ -64,7 +59,6 @@ function Footer() {
           ></iframe>
         </div>
   
-        {/* Footer Bottom: Copyright */}
         <div className="footer__bottom">
           © 2024 Erstellt von Helene Harrer für die Bachelorarbeit
         </div>

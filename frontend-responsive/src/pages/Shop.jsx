@@ -18,11 +18,9 @@ const authHeader = {
   },
 };
 
-  // New state for search term and sorting order
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("default");
 
-  // Fetch products (if search query exists, use it)
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const query = params.get("search") || "";
@@ -34,7 +32,6 @@ const authHeader = {
       )
       .then((response) => {
         let data = response.data;
-        // Sort products if sort order is specified
         if (sortOrder === "lowToHigh") {
           data.sort((a, b) => a.price - b.price);
         } else if (sortOrder === "highToLow") {
@@ -45,13 +42,11 @@ const authHeader = {
       .catch((error) => console.error("Error fetching products:", error));
   }, [location.search, sortOrder]);
 
-  // Handle search form submission
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     navigate(`/shop?search=${encodeURIComponent(searchTerm)}`);
   };
 
-  // Increase quantity
   const handleIncrease = (productId) => {
     setQuantities((prev) => {
       const current = prev[productId] ?? 1;
@@ -59,7 +54,6 @@ const authHeader = {
     });
   };
 
-  // Decrease quantity
   const handleDecrease = (productId) => {
     setQuantities((prev) => {
       const current = prev[productId] ?? 1;
@@ -71,7 +65,6 @@ const authHeader = {
     setQuantities((prev) => ({ ...prev, [productId]: Math.min(50, newVal) }));
   };
 
-  // Add to cart
   const handleAddToCart = async (productId) => {
     if (!user) {
       navigate("/login");
@@ -89,7 +82,6 @@ const authHeader = {
     }
   };
 
-  // Navigate to product detail
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
   };
@@ -98,7 +90,6 @@ const authHeader = {
     <div className="shop-container">
       <h1>Unser Sortiment</h1>
 
-      {/* Filter Section */}
       <div className="shop__filters">
         <div className="shop__filters-left">
           <select
@@ -133,7 +124,6 @@ const authHeader = {
         </div>
       </div>
 
-      {/* Product Grid */}
       <div className="shop__grid">
         {products.map((product) => {
           const quantity = quantities[product.id] ?? 1;

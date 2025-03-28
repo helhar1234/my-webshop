@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    host: true, // erlaubt Zugriff von außen
+    host: true,
     strictPort: true,
     allowedHosts: ["webshop-frontend-responsive.onrender.com", "localhost"],
   },

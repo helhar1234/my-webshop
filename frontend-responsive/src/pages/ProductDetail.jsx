@@ -11,7 +11,7 @@ function ProductDetail() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { user } = useAuth();
   const navigate = useNavigate();
-  const { id } = useParams(); // Produkt-ID aus URL
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const token = localStorage.getItem("token");
@@ -32,22 +32,18 @@ const authHeader = {
       });
   }, [id]);
 
-  // Menge erhöhen
   const handleIncrease = () => {
     setQuantity((prev) => Math.min(prev + 1, 50));
   };
 
-  // Menge verringern
   const handleDecrease = () => {
     setQuantity((prev) => Math.max(prev - 1, 1));
   };
 
-  // Direktwert ändern
   const handleQuantityChange = (newVal) => {
     setQuantity(Math.min(newVal, 50));
   };
 
-  // Produkt in den Warenkorb legen
   const handleAddToCart = async () => {
     if (!user) {
       navigate("/login");
@@ -73,7 +69,6 @@ const authHeader = {
     <div className="product-detail mt-5">
       <div className="container">
         <div className="row g-4 product-detail__container">
-          {/* Bild */}
           <div className="col-12 col-lg-6 product-detail__image">
             <img
               src={`/images/products/${product.name}.png`}
@@ -81,7 +76,6 @@ const authHeader = {
             />
           </div>
 
-          {/* Produktinfos */}
           <div className="col-12 col-lg-6">
             <div className="product-detail__info">
               <div className="product-detail__header">

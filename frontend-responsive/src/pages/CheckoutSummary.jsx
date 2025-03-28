@@ -1,11 +1,13 @@
 import { useCheckout } from "../context/CheckoutContext";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
 
 function CheckoutSummary() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { cartItems, address, payment } = useCheckout();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("token");
 const authHeader = {
   headers: {
@@ -23,6 +25,23 @@ const authHeader = {
     const raw = cardNumber.replace(/-/g, "");
     const visible = raw.slice(-4);
     return "XXXX-XXXX-XXXX-" + visible;
+  };
+
+  const handleCheckout = async () => {
+    setIsLoading(true);
+    try {
+      await axios.post(
+        `${API_BASE_URL}/checkout`,
+        { cart: cartItems },
+        authHeader
+      );
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    } catch (error) {
+      console.error("Checkout error:", error);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -74,15 +93,12 @@ const authHeader = {
 
       <div className="checkout__actions">
         <button className="button button--danger" onClick={() => navigate("/")}>Abbrechen</button>
-        <button className="button button--primary" onClick={async () => {
-          try {
-            await axios.post(`${API_BASE_URL}/checkout`, { cart: cartItems }, authHeader);
-            navigate("/");
-          } catch (error) {
-            console.error("Checkout error:", error);
-          }
-        }}>
-          Bestellen
+        <button
+          className="button button--primary"
+          onClick={handleCheckout}
+          disabled={isLoading}
+        >
+           {isLoading ? "Wird gesendet..." : "Bestellen"}
         </button>
       </div>
     </div>

@@ -11,7 +11,7 @@ function ProductDetail() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { user } = useAuth();
   const navigate = useNavigate();
-  const { id } = useParams(); // Produkt-ID aus URL
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const token = localStorage.getItem("token");
@@ -32,22 +32,18 @@ function ProductDetail() {
       });
   }, [id]);
 
-  // Menge erhöhen
   const handleIncrease = () => {
     setQuantity((prev) => Math.min(prev + 1, 50));
   };
 
-  // Menge verringern
   const handleDecrease = () => {
     setQuantity((prev) => Math.max(prev - 1, 1));
   };
 
-  // Direktwert ändern
   const handleQuantityChange = (newVal) => {
     setQuantity(Math.min(newVal, 50));
   };
 
-  // Produkt in den Warenkorb legen
   const handleAddToCart = async () => {
     if (!user) {
       navigate("/login");

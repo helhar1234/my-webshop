@@ -8,15 +8,12 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ⬇️ Token aus localStorage holen
   const token = localStorage.getItem("token");
 
-  // 🔐 Token-Header vorbereiten
   const authHeaders = token
     ? { headers: { Authorization: `Bearer ${token}` } }
     : {};
 
-  // 📥 Profil beim Laden prüfen
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -34,7 +31,6 @@ export const AuthProvider = ({ children }) => {
     fetchProfile();
   }, []);
 
-  // 🟢 Login → Token speichern
   const login = async (username, password) => {
     try {
       const { data } = await axios.post(`${API_BASE_URL}/auth/login`, {
@@ -55,7 +51,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // 🔴 Logout
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
