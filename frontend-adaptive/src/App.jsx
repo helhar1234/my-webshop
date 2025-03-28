@@ -1,6 +1,6 @@
 import React from "react";
 import LogRocket from 'logrocket';
-LogRocket.init('bxyh30/webshop-logs');
+LogRocket.init('wpcinr/webshop-logs');
 LogRocket.identify('2', {
   name: 'Helene Harrer adaptive',
   email: 'if22b036@technikum-wien.at',
