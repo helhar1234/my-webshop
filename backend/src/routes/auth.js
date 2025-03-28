@@ -38,9 +38,10 @@ router.post('/login', async (req, res) => {
 
         await saveSession(sessionId, sessionData, expireAt);
         const isProduction = process.env.NODE_ENV === 'production';
+        console.log("isProduction: ", isProduction);
         res.cookie("user_sid", sessionId, {
             httpOnly: true,
-            secure: isProduction, // ✅ true in Production (Render), false lokal
+            secure: true, // ✅ true in Production (Render), false lokal
             sameSite: 'None',      // ✅ damit Cross-Origin klappt
             maxAge: 1000 * 60 * 60 // 1 Stunde
           });
