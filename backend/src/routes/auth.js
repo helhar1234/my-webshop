@@ -41,9 +41,8 @@ router.post('/login', async (req, res) => {
         console.log("isProduction: ", isProduction);
         res.cookie("user_sid", sessionId, {
             httpOnly: true,
-            secure: true, // ✅ true in Production (Render), false lokal
-            sameSite: 'None',      // ✅ damit Cross-Origin klappt
-            domain: 'my-webshop-6ek5.onrender.com',
+            secure: isProduction, // ✅ true in Production (Render), false lokal
+            sameSite: "None",      // ✅ damit Cross-Origin klappt
             maxAge: 1000 * 60 * 60 // 1 Stunde
           });
 

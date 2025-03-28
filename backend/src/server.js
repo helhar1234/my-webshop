@@ -15,28 +15,11 @@ const allowedOrigins = [
   "https://webshop-frontend-responsive.onrender.com",
 ];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Wenn kein Origin (z. B. bei Server-zu-Server) → erlauben
-      if (!origin) return callback(null, true);
+app.use(cors({
+  origin: true,           // erlaubt alle "korrekten" Origins (wie das Frontend)
+  credentials: true,
+}));
 
-      const isAllowed = allowedOrigins.some((o) => {
-        return typeof o === "string" ? o === origin : o.test(origin);
-      });
-
-      if (isAllowed) {
-        callback(null, true);
-      } else {
-        callback(
-          new Error("CORS policy does not allow this origin: " + origin)
-        );
-      }
-    },
-    credentials: true, // Damit Browser die Cookies auch mitschickt
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
 
 app.set('trust proxy', true)
 
