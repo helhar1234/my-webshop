@@ -38,6 +38,8 @@ app.use(
   })
 );
 
+app.set('trust proxy', true)
+
 app.use(express.json());
 
 // 🛠️ Logging für eingehende Anfragen
