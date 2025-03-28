@@ -37,12 +37,13 @@ router.post('/login', async (req, res) => {
         const expireAt = new Date(Date.now() + 1000 * 60 * 60); // Ablaufzeit in 1 Stunde
 
         await saveSession(sessionId, sessionData, expireAt);
-
+        const isProduction = process.env.NODE_ENV === 'production';
         res.cookie("user_sid", sessionId, {
             httpOnly: true,
-            secure: false, // Falls HTTPS verwendet wird, auf `true` setzen
-            maxAge: 1000 * 60 * 60 // 1 Stunde gültig
-        });
+            secure: isProduction, // ✅ true in Production (Render), false lokal
+            sameSite: 'None',      // ✅ damit Cross-Origin klappt
+            maxAge: 1000 * 60 * 60 // 1 Stunde
+          });
 
         console.log(`✅ Login erfolgreich: ${username}`);
         res.json({ message: 'Login erfolgreich', user: sessionData });
