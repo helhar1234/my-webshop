@@ -8,7 +8,7 @@ export default defineConfig({
     host: true, // erlaubt Zugriff von außen
     strictPort: true,
     allowedHosts: [
-      "frontend-adaptive.onrender.com",
+      "webshop-frontend-adaptive.onrender.com",
       "localhost"
     ]
   }
