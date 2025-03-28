@@ -47,6 +47,6 @@ services:
       - key: DB_NAME
         value: dbwebshop
       - key: VITE_API_URL
-        value: https://my-webshop-backend.onrender.com/api
+        value: https://my-webshop-6ek5.onrender.com/api
 
     plan: free
