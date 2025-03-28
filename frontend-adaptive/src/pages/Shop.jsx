@@ -11,6 +11,12 @@ function Shop() {
   const [quantities, setQuantities] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+const authHeader = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
 
   // New state for search term and sorting order
   const [searchTerm, setSearchTerm] = useState("");
@@ -77,7 +83,7 @@ function Shop() {
       await axios.post(
         `${API_BASE_URL}/cart/add`,
         { productId, quantity },
-        { withCredentials: true }
+        authHeader
       );
     } catch (error) {
       console.error("Error adding product to cart:", error);

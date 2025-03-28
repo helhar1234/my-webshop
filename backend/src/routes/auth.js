@@ -1,107 +1,75 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const crypto = require('crypto'); // Für die Session-ID
+const jwt = require('jsonwebtoken');
 const { getUserByUsername, createUser } = require('../models/user');
-const { saveSession, deleteSessionById, getSessionById } = require('../models/session');
 
 const router = express.Router();
 
-// 🛠️ Registrierung
+// 🔐 Middleware: Token prüfen
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader?.split(' ')[1];
+
+  if (!token) return res.status(401).json({ error: 'Kein Token gesendet' });
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.status(403).json({ error: 'Token ungültig' });
+    req.user = user;
+    next();
+  });
+};
+
+// ✅ Registrierung
 router.post('/register', async (req, res) => {
-    const { username, password } = req.body;
+  const { username, password } = req.body;
 
-    try {
-        await createUser(username, password);
-        res.status(201).json({ message: "Benutzer erfolgreich registriert" });
-    } catch (error) {
-        console.error("❌ Fehler bei der Registrierung:", error);
-        res.status(500).json({ error: "Fehler beim Erstellen des Benutzers" });
-    }
+  try {
+    await createUser(username, password);
+    res.status(201).json({ message: "Benutzer erfolgreich registriert" });
+  } catch (error) {
+    console.error("❌ Fehler bei der Registrierung:", error);
+    res.status(500).json({ error: "Fehler beim Erstellen des Benutzers" });
+  }
 });
 
-// 🛠️ Login (Session wird in der DB gespeichert)
+// ✅ Login
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    console.log(`🔑 Login-Versuch für Benutzer: ${username}`);
+  const { username, password } = req.body;
 
-    try {
-        const user = await getUserByUsername(username);
-        if (!user) return res.status(401).json({ error: 'Benutzer nicht gefunden' });
+  try {
+    const user = await getUserByUsername(username);
+    if (!user) return res.status(401).json({ error: 'Benutzer nicht gefunden' });
 
-        const isValid = await bcrypt.compare(password, user.password);
-        if (!isValid) return res.status(401).json({ error: 'Falsches Passwort' });
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) return res.status(401).json({ error: 'Falsches Passwort' });
 
-        // 🔹 Generiere eine Session-ID, falls req.sessionID nicht existiert
-        const sessionId = req.sessionID || crypto.randomUUID();
-        const sessionData = { userId: user.id, username: user.username };
-        const expireAt = new Date(Date.now() + 1000 * 60 * 60); // Ablaufzeit in 1 Stunde
+    // 🎟 JWT generieren
+    const token = jwt.sign(
+      { userId: user.id, username: user.username },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
 
-        await saveSession(sessionId, sessionData, expireAt);
-        const isProduction = process.env.NODE_ENV === 'production';
-        console.log("isProduction: ", isProduction);
-        res.cookie("user_sid", sessionId, {
-            httpOnly: true,
-            secure: isProduction, // ✅ true in Production (Render), false lokal
-            sameSite: "None",      // ✅ damit Cross-Origin klappt
-            maxAge: 1000 * 60 * 60 // 1 Stunde
-          });
+    res.json({ message: "Login erfolgreich", token });
 
-        console.log(`✅ Login erfolgreich: ${username}`);
-        res.json({ message: 'Login erfolgreich', user: sessionData });
-
-    } catch (error) {
-        console.error("❌ Fehler beim Login:", error);
-        res.status(500).json({ error: "Fehler beim Login" });
-    }
+  } catch (error) {
+    console.error("❌ Fehler beim Login:", error);
+    res.status(500).json({ error: "Fehler beim Login" });
+  }
 });
 
-// 🛠️ Logout (Session in der DB löschen)
-router.post('/logout', async (req, res) => {
-    try {
-        const sessionId = req.cookies.user_sid;
-        if (!sessionId) {
-            return res.status(400).json({ error: "Keine aktive Session gefunden" });
-        }
-
-        await deleteSessionById(sessionId);
-        res.clearCookie("user_sid"); // Session-Cookie löschen
-
-        console.log("✅ Logout erfolgreich");
-        res.json({ message: "Logout erfolgreich" });
-    } catch (error) {
-        console.error("❌ Fehler beim Logout:", error);
-        res.status(500).json({ error: "Fehler beim Logout" });
-    }
+// 🔐 Protected Route: Profil
+router.get('/profile', authenticateToken, (req, res) => {
+  res.json({
+    username: req.user.username,
+    userId: req.user.userId,
+  });
 });
 
-// Neue Route für "Profile" (aktuellen User abrufen)
-router.get('/profile', async (req, res) => {
-    try {
-        // Cookie auslesen
-        const sessionId = req.cookies.user_sid;
-        if (!sessionId) {
-            return res.status(401).json({ error: 'Keine Session-ID im Cookie gefunden' });
-        }
-
-        // Session aus der Datenbank holen
-        const sessionData = await getSessionById(sessionId);
-        if (!sessionData) {
-            return res.status(401).json({ error: 'Session nicht (mehr) gültig oder abgelaufen' });
-        }
-
-        // Sessiondaten sind das, was ihr beim Login gespeichert habt,
-        // z.B. { userId, username }. Falls ihr die Spalte in der DB
-        // als JSON speichert, könnt ihr direkt zurückgeben:
-        res.json({
-            username: sessionData.username,
-            userId: sessionData.userId,
-            // weitere Felder...
-        });
-    } catch (error) {
-        console.error("❌ Fehler beim Laden des Profils:", error);
-        res.status(500).json({ error: "Fehler beim Laden des Profils" });
-    }
+// 🧹 Logout (optional – Token bleibt einfach ungültig nach Ablauf)
+router.post('/logout', (req, res) => {
+  // Bei JWT ist Logout optional – Token wird einfach im Frontend gelöscht
+  res.json({ message: "Logout erfolgreich (Token clientseitig löschen)" });
 });
-
 
 module.exports = router;

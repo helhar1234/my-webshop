@@ -11,6 +11,12 @@ function Cart() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const { setCartItems } = useCheckout();
+  const token = localStorage.getItem("token");
+const authHeader = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
 
   useEffect(() => {
     if (!user) {
@@ -18,7 +24,7 @@ function Cart() {
       return;
     }
     axios
-      .get(`${API_BASE_URL}/cart`, { withCredentials: true })
+      .get(`${API_BASE_URL}/cart`, authHeader)
       .then((response) => {
         setCart(response.data);
       })
@@ -31,11 +37,9 @@ function Cart() {
 
   const removeFromCart = async (productId) => {
     try {
-      await axios.delete(`${API_BASE_URL}/cart/remove/${productId}`, {
-        withCredentials: true,
-      });
+      await axios.delete(`${API_BASE_URL}/cart/remove/${productId}`, authHeader);
       // Warenkorb erneut abrufen
-      const response = await axios.get(`${API_BASE_URL}/cart`, { withCredentials: true });
+      const response = await axios.get(`${API_BASE_URL}/cart`, authHeader);
       setCart(response.data);
     } catch (error) {
       console.error("❌ Fehler beim Entfernen des Produkts:", error);
@@ -44,7 +48,7 @@ function Cart() {
 
   const clearCart = async () => {
     try {
-      await axios.delete(`${API_BASE_URL}/cart/clear`, { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/cart/clear`, authHeader);
       setCart([]);
     } catch (error) {
       console.error("❌ Fehler beim Leeren des Warenkorbs:", error);

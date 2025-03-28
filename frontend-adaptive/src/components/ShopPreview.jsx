@@ -12,6 +12,12 @@ function ShopPreview() {
   const [quantities, setQuantities] = useState({});
   const navigate = useNavigate();
   const [maxProducts, setMaxProducts] = useState(10);
+  const token = localStorage.getItem("token");
+const authHeader = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
   
   useEffect(() => {
     const updateMaxProducts = () => {
@@ -68,7 +74,7 @@ function ShopPreview() {
       await axios.post(
         `${API_BASE_URL}/cart/add`,
         { productId, quantity },
-        { withCredentials: true }
+        authHeader
       );
     } catch (error) {
       console.error("Error adding product to cart:", error);

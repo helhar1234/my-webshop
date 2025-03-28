@@ -70,7 +70,7 @@ function CheckoutSummary() {
         <button className="button button--danger" onClick={() => navigate("/")}>Abbrechen</button>
         <button className="button button--primary" onClick={async () => {
           try {
-            await axios.post(`${API_BASE_URL}/checkout`, { cart: cartItems }, { withCredentials: true });
+            await axios.post(`${API_BASE_URL}/checkout`, { cart: cartItems }, authHeader);
             navigate("/");
           } catch (error) {
             console.error("Checkout error:", error);

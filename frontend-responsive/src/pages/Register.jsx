@@ -13,6 +13,12 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth(); // Auto-Login nach Registrierung
+  const token = localStorage.getItem("token");
+const authHeader = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
 
   const handleRegister = async () => {
     setLoading(true);
@@ -42,7 +48,7 @@ function Register() {
       await axios.post(
         `${API_BASE_URL}/auth/register`,
         { username, password },
-        { withCredentials: true }
+        authHeader
       );
       // Automatischer Login nach erfolgreicher Registrierung
       await login(username, password);

@@ -1,27 +1,31 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
 
 const app = express();
 
-// 🛠️ Middleware für Cookies
-app.use(cookieParser());
-
-// 🛠️ CORS (Frontend & Cookies erlauben)
+// 🛠️ CORS (für mehrere Frontends & JWT Header erlaubt)
 const allowedOrigins = [
   /^http:\/\/localhost:\d+$/,
   "https://webshop-frontend-adaptive.onrender.com",
   "https://webshop-frontend-responsive.onrender.com",
 ];
 
-app.use(cors({
-  origin: true,           // erlaubt alle "korrekten" Origins (wie das Frontend)
-  credentials: true,
-}));
-
-
-app.set('trust proxy', true)
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const isAllowed = allowedOrigins.some((o) =>
+        typeof o === "string" ? o === origin : o.test(origin)
+      );
+      isAllowed
+        ? callback(null, true)
+        : callback(new Error("CORS policy does not allow origin: " + origin));
+    },
+    credentials: false, // ❌ Kein Cookie-Versand notwendig
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 app.use(express.json());
 
@@ -44,8 +48,8 @@ app.use("/api/cart", cartRouter);
 app.use("/api/checkout", checkoutRouter);
 app.use("/api/search", searchRouter);
 
+// 🟢 Start
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Backend läuft auf http://0.0.0.0:${PORT}`);
 });

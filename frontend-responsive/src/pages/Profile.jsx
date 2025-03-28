@@ -8,6 +8,12 @@ function Profile() {
   const { user, logout, setUser } = useAuth();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+const authHeader = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
 
   useEffect(() => {
     if (!user) {
@@ -20,7 +26,7 @@ function Profile() {
       try {
         const response = await axios.get(
           `${API_BASE_URL}/auth/profile`,
-          { withCredentials: true }
+          authHeader
         );
         console.log("Profile loaded:", response.data);
         setUser && setUser(response.data);

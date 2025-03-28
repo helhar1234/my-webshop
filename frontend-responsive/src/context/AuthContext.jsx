@@ -4,63 +4,70 @@ import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const response = await axios.get(`${API_BASE_URL}/auth/profile`, { withCredentials: true });
-                console.log('✅ Profil geladen:', response.data);
-                setUser(response.data);
-            } catch (error) {
-                console.error('🚨 Fehler beim Abrufen des Profils:', error);
-                setUser(null);
-            } finally {
-                setLoading(false);
-            }
-        };
+  // ⬇️ Token aus localStorage holen
+  const token = localStorage.getItem("token");
 
-        fetchProfile();
-    }, []);
+  // 🔐 Token-Header vorbereiten
+  const authHeaders = token
+    ? { headers: { Authorization: `Bearer ${token}` } }
+    : {};
 
-    // 🛠️ Login-Handler
-    const login = async (username, password) => {
-        try {
-            await axios.post(`${API_BASE_URL}/auth/login`,
-                { username, password },
-                { withCredentials: true }
-            );
-
-            const response = await axios.get(`${API_BASE_URL}/auth/profile`, { withCredentials: true });
-            setUser(response.data);
-        } catch (error) {
-            console.error("❌ Fehler beim Login:", error);
-            throw error;
-        }
+  // 📥 Profil beim Laden prüfen
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/auth/profile`, authHeaders);
+        console.log("✅ Profil geladen:", response.data);
+        setUser(response.data);
+      } catch (error) {
+        console.error("🚨 Fehler beim Abrufen des Profils:", error);
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    // 🛠️ Logout-Handler
-    const logout = async () => {
-        try {
-            await axios.post(`${API_BASE_URL}/auth/logout`, {}, { withCredentials: true });
-            setUser(null);
-        } catch (error) {
-            console.error("❌ Fehler beim Logout:", error);
-        }
-    };
+    fetchProfile();
+  }, []);
 
-    if (loading) {
-        return <p>Lädt...</p>;  // Ladeanzeige während der Session-Abruf läuft
+  // 🟢 Login → Token speichern
+  const login = async (username, password) => {
+    try {
+      const { data } = await axios.post(`${API_BASE_URL}/auth/login`, {
+        username,
+        password,
+      });
+
+      localStorage.setItem("token", data.token);
+
+      const profileResponse = await axios.get(`${API_BASE_URL}/auth/profile`, {
+        headers: { Authorization: `Bearer ${data.token}` },
+      });
+
+      setUser(profileResponse.data);
+    } catch (error) {
+      console.error("❌ Fehler beim Login:", error);
+      throw error;
     }
+  };
 
-    return (
-        <AuthContext.Provider value={{ user, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  // 🔴 Logout
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+  };
+
+  if (loading) return <p>Lädt...</p>;
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-// 🛠️ Hook zum einfachen Zugriff auf Auth-Daten
 export const useAuth = () => useContext(AuthContext);

@@ -14,6 +14,12 @@ function ProductDetail() {
   const { id } = useParams(); // Produkt-ID aus URL
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const token = localStorage.getItem("token");
+const authHeader = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
 
   useEffect(() => {
     axios
@@ -52,7 +58,7 @@ function ProductDetail() {
       await axios.post(
         `${API_BASE_URL}/cart/add`,
         { productId: product.id, quantity },
-        { withCredentials: true }
+        authHeader
       );
     } catch (error) {
       console.error("Fehler beim Hinzufügen zum Warenkorb:", error);

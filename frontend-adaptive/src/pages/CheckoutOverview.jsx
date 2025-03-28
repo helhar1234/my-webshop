@@ -6,6 +6,12 @@ function CheckoutOverview() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { cartItems, setCartItems } = useCheckout();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+const authHeader = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
 
   if (!cartItems || cartItems.length === 0) {
     return <p className="checkout-overview__empty">Keine Artikel im Checkout vorhanden.</p>;
@@ -18,8 +24,8 @@ function CheckoutOverview() {
 
   const handleRemove = async (productId) => {
     try {
-      await axios.delete(`${API_BASE_URL}/cart/remove/${productId}`, { withCredentials: true });
-      const response = await axios.get(`${API_BASE_URL}/cart`, { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/cart/remove/${productId}`, authHeader);
+      const response = await axios.get(`${API_BASE_URL}/cart`, authHeader);
       setCartItems(response.data);
     } catch (error) {
       console.error("Fehler beim Entfernen des Produkts:", error);

@@ -1,2 +1,0 @@
-# Leite alle API-Requests an dein Backend weiter
-/api/* https://my-webshop-6ek5.onrender.com/api/:splat 200
