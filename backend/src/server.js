@@ -37,11 +37,7 @@ app.use('/api/checkout', checkoutRouter);
 app.use('/api/search', searchRouter);
 
 const PORT = process.env.PORT || 5000;
-app.get('/', (req, res) => {
-    res.send('Hello from backend');
-  });
-  
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Backend läuft auf http://0.0.0.0:${PORT}`);
-  });
-app.listen(PORT, () => console.log(`🚀 Backend läuft auf http://localhost:${PORT}`));
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Backend läuft auf http://0.0.0.0:${PORT}`);
+});
