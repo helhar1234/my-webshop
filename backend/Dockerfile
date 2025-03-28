@@ -1,6 +1,11 @@
 FROM node:18
+
 WORKDIR /app
-COPY backend/package*.json ./
+COPY package*.json ./
 RUN npm install
-COPY backend/. .
+COPY . .
+
+# Kein fixer Port im EXPOSE!
+EXPOSE 10000
+
 CMD ["node", "src/server.js"]
