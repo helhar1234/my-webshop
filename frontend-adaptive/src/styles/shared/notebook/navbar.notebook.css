@@ -1,6 +1,6 @@
-/* navbar.global.css */
+
 @media (min-width: 1024px) {
-/* Volle Breite, grundlegende Farben, Fonts und Abstände */
+
 .navbar {
     display: flex;
     align-items: center;
@@ -13,7 +13,7 @@
     font-family: var(--text-font);
   }
   
-  /* Marke (Logo + Brandtext) */
+  
   .navbar__brand {
     display: flex;
     align-items: center;
@@ -34,7 +34,7 @@
     color: var(--primary-lime-green);
   }
   
-  /* Menü */
+  
   .navbar__menu {
     display: flex;
     align-items: center;
@@ -53,7 +53,7 @@
     color: var(--primary-lime-green);
   }
   
-  /* Actions: Suchleiste, Icons, Hamburger */
+  
   .navbar__actions {
     display: flex;
     align-items: center;
@@ -61,7 +61,7 @@
     position: relative;
   }
   
-  /* Suchleiste */
+  
   .navbar__search {
     position: relative;
     transition: width 0.3s ease, opacity 0.3s ease;
@@ -80,7 +80,7 @@
     opacity: 1;
   }
   
-  /* Suchbutton – verwendet search-icon.png, gleiche Größe wie andere Icons */
+  
   .navbar__search-btn {
     background: transparent;
     border: none;
@@ -93,7 +93,7 @@
     object-fit: contain;
   }
   
-  /* Icons (Profil, Warenkorb, etc.) */
+  
   .navbar__icons {
     display: flex;
     align-items: center;
@@ -114,7 +114,7 @@
     filter: brightness(0) saturate(100%) invert(46%) sepia(73%) saturate(2636%) hue-rotate(90deg) brightness(96%) contrast(95%);
   }
   
-  /* Hamburger-Button: Standardmäßig ausgeblendet */
+  
   .navbar__hamburger {
     display: none;
     background: transparent;

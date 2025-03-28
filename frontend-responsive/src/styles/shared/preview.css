@@ -4,14 +4,12 @@
   width: 100%;
 }
 
-/* Desktop Grid */
 .shop-preview__grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
 }
 
-/* Mobile horizontal scroll */
 .shop-preview__scroll {
   display: flex;
   overflow-x: auto;
@@ -27,7 +25,6 @@
   flex-shrink: 0;
 }
 
-/* Button */
 .shop-preview__view-all {
   text-align: center;
   margin-top: 2rem;

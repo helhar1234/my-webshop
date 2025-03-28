@@ -1,23 +1,23 @@
-/* Home.css */
+
 @media (min-width: 1024px) {
 .home {
     width: 100%;
     padding: 2rem;
     box-sizing: border-box;
-    background-color: #f8f8f8; /* Dezenter Hintergrund, der nicht zu stark sticht */
+    background-color: #f8f8f8; 
   }
 } 
 @media (max-width: 480px) {
   .home {
     width: 100%;
-    background-color: #f8f8f8; /* Dezenter Hintergrund, der nicht zu stark sticht */
+    background-color: #f8f8f8; 
   }
 }
   .home__section {
     margin-bottom: 3rem;
   }
   
-  /* Überschrift Styling für jede Section */
+  
   .home__heading {
     text-align: center;
     font-size: 2rem;
@@ -27,7 +27,7 @@
     letter-spacing: 1px;
   }
   
-  /* Optional: Unterstreichung der Überschrift */
+  
   .home__heading::after {
     content: "";
     display: block;

@@ -1,12 +1,8 @@
-/* Shop.css */
-
-/* Container */
 .shop-container {
   text-align: center;
   padding: 2rem;
 }
 
-/* Filter Section: Zwei separate Boxen an den Rändern */
 .shop__filters {
   display: flex;
   justify-content: space-between;
@@ -71,7 +67,6 @@
   border-radius: 4px;
 }
 
-/* Product Grid Layout */
 .shop__grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

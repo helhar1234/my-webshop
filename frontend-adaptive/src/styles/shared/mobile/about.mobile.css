@@ -3,7 +3,6 @@
       padding: 1.5rem 1rem;
     }
   
-    /* HERO SECTION */
     .about__hero {
       position: relative;
       height: auto;
@@ -14,7 +13,7 @@
         width: 100vw;
         height: 220px;
         object-fit: cover;
-        margin-left: -1rem; /* gleicht Padding vom .about aus */
+        margin-left: -1rem;
         border-radius: 0;
     }
   
@@ -35,7 +34,6 @@
       line-height: 1.5;
     }
   
-    /* MISSION SECTION */
     .about__mission {
       text-align: center;
       margin-bottom: 2rem;
@@ -57,11 +55,10 @@
         width: 100vw;
         height: 220px;
         object-fit: cover;
-        margin-left: -1rem; /* gleicht Padding vom .about aus */
+        margin-left: -1rem;
         border-radius: 0;
     }
   
-    /* ÜBER UNS SECTION */
     .about__overview {
       text-align: center;
       margin-bottom: 2rem;
@@ -79,7 +76,6 @@
       margin-bottom: 1rem;
     }
   
-    /* TEAM SECTION */
     .about__team {
       text-align: center;
       margin-bottom: 2rem;

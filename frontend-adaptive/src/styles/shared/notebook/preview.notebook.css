@@ -1,4 +1,4 @@
-/* ShopPreview.css */
+
 @media (min-width: 1024px) {
 .shop-preview {
     padding: 2rem;
@@ -13,7 +13,7 @@
     color: var(--primary-leaf-green);
   }
   
-  /* Grid: 5 Spalten, 2 Reihen (insgesamt 10 Produkte) */
+  
   .shop-preview__grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);

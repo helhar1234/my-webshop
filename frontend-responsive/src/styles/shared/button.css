@@ -10,10 +10,9 @@
     text-align: center;
     text-decoration: none;
     transition: background-color 0.2s ease, transform 0.1s ease;
-    color: #fff; /* Standard-Textfarbe (Weiß) */
+    color: #fff;
   }
   
-  /* Hover- und Active-Stati für alle Buttons */
   .button:hover {
     filter: brightness(0.95);
   }
@@ -22,26 +21,18 @@
     transform: scale(0.98);
   }
   
-  /* =========================
-     PRIMÄRER BUTTON (z.B. "Absenden")
-     ========================= */
   .button--primary {
     background-color: var(--primary-leaf-green);
   }
   
-  /* Hover → leicht heller oder dunkler */
   .button--primary:hover {
     background-color: var(--primary-lime-green);
   }
   
-  /* =========================
-     DANGER BUTTON (z.B. "Löschen")
-     ========================= */
   .button--danger {
     background-color: var(--highlight-orange);
   }
   
-  /* Hover → etwas dunklere Nuance */
   .button--danger:hover {
-    background-color: #e68a00; /* z.B. etwas dunkleres Orange */
+    background-color: #e68a00;
   }

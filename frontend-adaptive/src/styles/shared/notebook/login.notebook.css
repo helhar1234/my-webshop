@@ -1,6 +1,6 @@
-/* Login.css */
+
 @media (min-width: 1024px) {
-/* Container für das ganze Formular */
+
 .login-container {
     display: flex;
     flex-direction: column;
@@ -11,14 +11,14 @@
     background-color: var(--neutral-off-white);
   }
   
-  /* Überschrift */
+  
   .login-title {
     font-size: 2rem;
     margin-bottom: 1rem;
     color: var(--text-charcoal);
   }
   
-  /* Formular-Container im Card-Stil */
+  
   .login-form {
     background-color: #fff;
     padding: 2rem;
@@ -32,14 +32,14 @@
   }
 
   
-  /* Fehlermeldung */
+  
   .login-error {
     color: #d9534f;
     font-size: 0.9rem;
     text-align: center;
   }
   
-  /* Register-Text */
+  
   .login-register {
     text-align: center;
     font-size: 1rem;

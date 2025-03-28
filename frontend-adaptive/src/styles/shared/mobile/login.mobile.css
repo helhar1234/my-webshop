@@ -1,5 +1,5 @@
-/* login.mobile.css & register.mobile.css */
-/* Gültig nur für Viewports bis 480px (Smartphones) */
+
+
 @media (max-width: 480px) {
     .login-container,
     .register-container {
@@ -57,12 +57,12 @@
       color: var(--text-charcoal);
     }
   
-    /* Optional: Reduziere Tap-Abstand bei kleineren Geräten */
+    
     input::placeholder {
       font-size: 0.95rem;
     }
   
-    /* Fokus-Feedback für Touchscreens */
+    
     input:focus {
       outline: 2px solid var(--primary-lime-green);
       outline-offset: 2px;

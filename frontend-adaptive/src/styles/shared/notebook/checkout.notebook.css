@@ -1,6 +1,6 @@
-/* --------------------------------------- */
-/* Global Checkout Container & Common Styles */
-/* --------------------------------------- */
+
+
+
 @media (min-width: 1024px) {
 .checkout-container {
   max-width: 1000px;
@@ -17,9 +17,9 @@
   margin-bottom: 1rem;
 }
 
-/* --------------------------------------- */
-/* Product List Styling (Overview & Summary) */
-/* --------------------------------------- */
+
+
+
 .checkout__product-list {
   list-style: none;
   padding: 0;
@@ -65,7 +65,7 @@
   color: var(--text-charcoal);
 }
 
-/* Entfernen-Button */
+
 .checkout__product-remove {
   background-color: var(--highlight-orange);
   border: none;
@@ -81,9 +81,9 @@
   background-color: #e07c00;
 }
 
-/* --------------------------------------- */
-/* Overview: Total Price & Action Buttons */
-/* --------------------------------------- */
+
+
+
 .checkout-overview__summary {
   display: flex;
   justify-content: flex-end;
@@ -110,7 +110,7 @@
   font-size: 1.6rem;
 }
 
-/* Buttons: Overview – 2 Buttons, links & rechts */
+
 .checkout-overview__actions {
   display: flex;
   justify-content: space-between;
@@ -146,9 +146,9 @@
   background-color: var(--primary-lime-green);
 }
 
-/* --------------------------------------- */
-/* Checkout Address */
-/* --------------------------------------- */
+
+
+
 .checkout-address .address-form {
   display: flex;
   flex-direction: column;
@@ -166,7 +166,7 @@
   flex: 1;
 }
 
-/* PLZ: nur 4 Zahlen (zusätzlich im JSX: pattern="\d{4}" und maxLength="4") */
+
 .checkout-address input[name="zip"] {
   max-width: 100px;
   text-align: center;
@@ -177,13 +177,13 @@
   text-align: center;
 }
 
-/* Error state for inputs */
+
 .checkout-address .input.error {
   border-color: #d9534f;
   box-shadow: 0 0 0 2px rgba(217,83,79,0.2);
 }
 
-/* Address Buttons: zwei Buttons, links und rechts */
+
 .checkout-address__actions {
   display: flex;
   justify-content: space-between;
@@ -195,13 +195,13 @@
   margin-bottom: 1.5rem;
 }
 
-/* Input-Gruppen in der Adress-Form */
+
 .address-form .input-group {
   display: flex;
   gap: 1rem;
 }
 
-/* Der Straßenname soll breiter sein als die Hausnummer */
+
 .input--street {
   flex: 2;
 }
@@ -238,9 +238,9 @@
   background-color: var(--primary-lime-green);
 }
 
-/* --------------------------------------- */
-/* Checkout Payment */
-/* --------------------------------------- */
+
+
+
 .checkout-payment .payment-form {
   display: flex;
   flex-direction: column;
@@ -272,7 +272,7 @@
   text-align: center;
 }
 
-/* Payment Buttons: zwei Buttons, links und rechts */
+
 .checkout-payment__actions {
   display: flex;
   justify-content: space-between;
@@ -307,9 +307,9 @@
   background-color: var(--primary-lime-green);
 }
 
-/* --------------------------------------- */
-/* Checkout Summary */
-/* --------------------------------------- */
+
+
+
 
 .checkout-summary__title {
   text-align: center;

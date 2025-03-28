@@ -29,11 +29,8 @@
     .carousel__overlay {
         position: absolute;
         top: 50%;
-        /* Vertikale Mitte */
         left: 50%;
-        /* Horizontale Mitte */
         transform: translate(-50%, -50%);
-        /* Ausgleich für beide Achsen */
         background-color: rgba(0, 0, 0, 0.4);
         padding: 1rem 1.5rem;
         border-radius: 6px;
@@ -52,6 +49,6 @@
 
     .carousel__arrow {
         display: none !important;
-        /* Verstecke Pfeile auf Mobile */
+        
     }
 }

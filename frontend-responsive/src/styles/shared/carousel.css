@@ -1,9 +1,7 @@
-/* Carousel.css */
-
 .carousel {
     position: relative;
     width: 100%;
-    height: 500px; /* feste Höhe */
+    height: 500px;
     overflow: hidden;
   }
   
@@ -23,7 +21,6 @@
     opacity: 1;
   }
   
-  /* Overlay für Text, mit hellem, weniger aufdringlichem Hintergrund */
   .carousel__overlay {
     position: absolute;
     bottom: 40%;
@@ -37,11 +34,10 @@
   
   .carousel__overlay h2 {
     color: var(--primary-leaf-green);
-    font-size: 3.5rem; /* größerer Text */
+    font-size: 3.5rem;
     margin: 0;
   }
   
-  /* Pfeiltasten – schlankes, modernes Design */
   .carousel__arrow {
     position: absolute;
     top: 50%;

@@ -1,5 +1,3 @@
-/* Profile.css */
-
 .profile {
   width: 100%;
   max-width: 500px;
@@ -42,7 +40,6 @@
   width: 100%;
 }
 
-/* Optional: mobile Optimierung */
 @media (max-width: 480px) {
   .profile__title {
     font-size: 1.5rem;

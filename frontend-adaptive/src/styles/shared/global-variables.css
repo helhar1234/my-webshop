@@ -1,18 +1,18 @@
 :root {
-    /* Primärfarben */
-    --primary-leaf-green: #4CAF50;  /* Hauptakzent (Buttons, Links, etc.) */
-    --primary-lime-green: #8BC34A;  /* Hover, sekundäre Akzente */
+    
+    --primary-leaf-green: #4CAF50;  
+    --primary-lime-green: #8BC34A;  
 
-    /* Sekundär-/Neutralfarben */
-    --neutral-off-white: #F7F7F7;   /* Hintergrund, Container */
-    --neutral-stone-gray: #AAAAAA;  /* Ränder, sekundärer Text */
+    
+    --neutral-off-white: #F7F7F7;   
+    --neutral-stone-gray: #AAAAAA;  
 
-    /* Highlight-Farbe */
-    --highlight-orange: #FF9800;    /* Warnungen, Aktionen (Sale) */
+    
+    --highlight-orange: #FF9800;    
 
-    /* Textfarbe */
-    --text-charcoal: #333333;       /* Haupttextfarbe */
+    
+    --text-charcoal: #333333;       
 
-    /* FONT */
+    
     --text-font: 'Trebuchet MS', sans-serif;
 }

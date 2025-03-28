@@ -1,4 +1,4 @@
-/* ProductCard.css */
+
 @media (min-width: 1024px) {
 .product-card {
     background-color: #fff;
@@ -16,7 +16,7 @@
   
   .product-card__image-wrapper {
     width: 100%;
-    padding-top: 75%; /* 4:3 Aspect Ratio */
+    padding-top: 75%; 
     position: relative;
     margin-bottom: 1rem;
   }
@@ -47,15 +47,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1rem; /* Neuer Abstand oberhalb des Counters */
+    margin-top: 1rem; 
     margin-bottom: 0.5em;
   }
   
   
-  /* Neuer Button, full width, unterhalb des Counters */
+  
   .product-card__button {
     width: 100%;
-    margin: 0; /* Kein seitlicher oder unterer Abstand */
+    margin: 0; 
     border: none;
     background-color: var(--primary-leaf-green);
     color: #fff;

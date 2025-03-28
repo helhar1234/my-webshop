@@ -83,7 +83,7 @@
       margin-top: 1rem;
     }
   
-    /* Optional nice touch on scroll in mobile */
+    
     .shop__grid > * {
       animation: fadeUp 0.25s ease-in;
     }

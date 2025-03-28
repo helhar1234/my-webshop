@@ -1,11 +1,9 @@
-/* Allgemeiner Container */
 .about {
   width: 100%;
   padding: 2rem;
   box-sizing: border-box;
 }
 
-/* Hero Section */
 .about__hero {
   position: relative;
   width: 100%;
@@ -42,7 +40,6 @@
   font-size: 1.2rem;
 }
 
-/* Mission Section */
 .about__mission {
   text-align: center;
   margin-bottom: 2rem;
@@ -73,7 +70,6 @@
   display: block;
 }
 
-/* Über uns Section */
 .about__overview {
   text-align: center;
   margin-bottom: 2rem;
@@ -95,7 +91,6 @@
   margin-right: auto;
 }
 
-/* Team Section */
 .about__team {
   text-align: center;
   margin-bottom: 2rem;

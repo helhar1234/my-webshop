@@ -1,4 +1,4 @@
-/* Cart.css */
+
 @media (min-width: 1024px) {
 .cart {
     max-width: 1000px;
@@ -20,7 +20,7 @@
     color: #555;
   }
   
-  /* Liste der Warenkorb-Items */
+  
   .cart__list {
     list-style: none;
     padding: 0;
@@ -62,7 +62,7 @@
     color: var(--text-charcoal);
   }
   
-  /* Entfernen-Button innerhalb eines Items */
+  
   .cart__item-remove {
     background-color: var(--highlight-orange);
     border: none;
@@ -78,7 +78,7 @@
     background-color: #e07c00;
   }
   
-  /* Zusammenfassung: Gesamtpreis unter den Items, rechts ausgerichtet, größer */
+  
   .cart__summary {
     display: flex;
     justify-content: flex-end;
@@ -95,7 +95,7 @@
     font-size: 1.6rem;
   }
   
-  /* Aktionen (Warenkorb leeren und Zur Kasse) */
+  
   .cart__actions {
     display: flex;
     gap: 1rem;

@@ -1,4 +1,4 @@
-/* Allgemeiner Container */
+
 @media (min-width: 1024px) {
 .about {
     width: 100%;
@@ -6,7 +6,7 @@
     box-sizing: border-box;
   }
   
-  /* Hero Section */
+  
   .about__hero {
     position: relative;
     width: 100%;
@@ -43,7 +43,7 @@
     font-size: 1.2rem;
   }
   
-  /* Mission Section */
+  
   .about__mission {
     text-align: center;
     margin-bottom: 2rem;
@@ -74,7 +74,7 @@
     display: block;
   }
   
-  /* Über uns Section */
+  
   .about__overview {
     text-align: center;
     margin-bottom: 2rem;
@@ -96,7 +96,7 @@
     margin-right: auto;
   }
   
-  /* Team Section */
+  
   .about__team {
     text-align: center;
     margin-bottom: 2rem;
@@ -108,7 +108,7 @@
     color: var(--primary-leaf-green);
   }
   
-  /* Die Team-Mitglieder sollen in einer flexiblen Reihe dargestellt werden */
+  
   .about__team-members {
     display: flex;
     flex-wrap: wrap;
@@ -116,7 +116,7 @@
     gap: 2rem;
   }
   
-  /* Team-Mitglied: fixierte Größe, damit beide Bilder exakt gleich groß sind */
+  
   .team-member {
     flex: 1 1 250px;
     max-width: 300px;
@@ -125,8 +125,8 @@
   
   .team-member__image {
     width: 100%;
-    height: 300px; /* Fixe Höhe */
-    object-fit: cover; /* Bild so skalieren, dass es den Container ausfüllt */
+    height: 300px; 
+    object-fit: cover; 
     border-radius: 50%;
     margin-bottom: 1rem;
   }
