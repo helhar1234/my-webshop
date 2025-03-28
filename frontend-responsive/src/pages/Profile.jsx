@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
 function Profile() {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { user, logout, setUser } = useAuth();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Profile() {
     const fetchProfile = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/auth/profile",
+          `${API_BASE_URL}/auth/profile`,
           { withCredentials: true }
         );
         console.log("Profile loaded:", response.data);

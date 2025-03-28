@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api"; // Dein Backend-Server
+const API_URL = "http://localhost:5000"; // Dein Backend-Server
 
 // API Client mit Session-Cookies
 const apiClient = axios.create({

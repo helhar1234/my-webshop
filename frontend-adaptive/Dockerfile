@@ -1,20 +1,18 @@
-# frontend-adaptive/Dockerfile (aber wird aus dem Root-Build-Kontext ausgeführt)
-
 FROM node:20-alpine
 
 WORKDIR /app
 
-# Kopiere package.json aus dem richtigen Ordner
-COPY frontend-adaptive/package*.json ./
+# package.json zuerst kopieren und installieren
+COPY package*.json ./
 
 RUN npm install
 
-# Optional: wenn esbuild o. ä. Probleme macht
+# Stelle sicher, dass esbuild korrekt installiert wird
 RUN npm rebuild esbuild
 
-# Kopiere den restlichen Code aus dem richtigen Subfolder
-COPY frontend-adaptive/. .
+COPY . .
 
+# Für Adaptive-Frontend Port 3001, für Responsive-Frontend Port 3000
 EXPOSE 3001
 
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3001"]

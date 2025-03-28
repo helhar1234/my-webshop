@@ -4,13 +4,14 @@ import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/auth/profile', { withCredentials: true });
+                const response = await axios.get(`${API_BASE_URL}/auth/profile`, { withCredentials: true });
                 console.log('✅ Profil geladen:', response.data);
                 setUser(response.data);
             } catch (error) {
@@ -27,12 +28,12 @@ export const AuthProvider = ({ children }) => {
     // 🛠️ Login-Handler
     const login = async (username, password) => {
         try {
-            await axios.post('http://localhost:5000/api/auth/login',
+            await axios.post(`${API_BASE_URL}/auth/login`,
                 { username, password },
                 { withCredentials: true }
             );
 
-            const response = await axios.get('http://localhost:5000/api/auth/profile', { withCredentials: true });
+            const response = await axios.get(`${API_BASE_URL}/auth/profile`, { withCredentials: true });
             setUser(response.data);
         } catch (error) {
             console.error("❌ Fehler beim Login:", error);
@@ -43,7 +44,7 @@ export const AuthProvider = ({ children }) => {
     // 🛠️ Logout-Handler
     const logout = async () => {
         try {
-            await axios.post("http://localhost:5000/api/auth/logout", {}, { withCredentials: true });
+            await axios.post(`${API_BASE_URL}/auth/logout`, {}, { withCredentials: true });
             setUser(null);
         } catch (error) {
             console.error("❌ Fehler beim Logout:", error);

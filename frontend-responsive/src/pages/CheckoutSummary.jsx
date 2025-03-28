@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CheckoutSummary() {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { cartItems, address, payment } = useCheckout();
   const navigate = useNavigate();
 
@@ -69,7 +70,7 @@ function CheckoutSummary() {
         <button className="button button--danger" onClick={() => navigate("/")}>Abbrechen</button>
         <button className="button button--primary" onClick={async () => {
           try {
-            await axios.post("http://localhost:5000/api/checkout", { cart: cartItems }, { withCredentials: true });
+            await axios.post(`${API_BASE_URL}/checkout`, { cart: cartItems }, { withCredentials: true });
             navigate("/");
           } catch (error) {
             console.error("Checkout error:", error);

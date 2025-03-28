@@ -6,12 +6,13 @@ import { useAuth } from "../context/AuthContext";
 import { ArrowRight } from "lucide-react";
 
 function ShopPreview() {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
   const navigate = useNavigate();
   const [maxProducts, setMaxProducts] = useState(10);
-
+  
   useEffect(() => {
     const updateMaxProducts = () => {
       setMaxProducts(window.innerWidth <= 480 ? 5 : 10);
@@ -24,7 +25,7 @@ function ShopPreview() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/products")
+      .get(`${API_BASE_URL}/products`)
       .then((response) => {
         setProducts(response.data);
       })
@@ -65,7 +66,7 @@ function ShopPreview() {
     const quantity = quantities[productId] ?? 1;
     try {
       await axios.post(
-        "http://localhost:5000/api/cart/add",
+        `${API_BASE_URL}/cart/add`,
         { productId, quantity },
         { withCredentials: true }
       );

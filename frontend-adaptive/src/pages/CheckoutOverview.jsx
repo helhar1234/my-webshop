@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CheckoutOverview() {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { cartItems, setCartItems } = useCheckout();
   const navigate = useNavigate();
 
@@ -17,8 +18,8 @@ function CheckoutOverview() {
 
   const handleRemove = async (productId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/cart/remove/${productId}`, { withCredentials: true });
-      const response = await axios.get("http://localhost:5000/api/cart", { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/cart/remove/${productId}`, { withCredentials: true });
+      const response = await axios.get(`${API_BASE_URL}/cart`, { withCredentials: true });
       setCartItems(response.data);
     } catch (error) {
       console.error("Fehler beim Entfernen des Produkts:", error);

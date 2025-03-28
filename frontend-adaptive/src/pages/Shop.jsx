@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard";
 import { useAuth } from "../context/AuthContext";
 
 function Shop() {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
@@ -22,8 +23,8 @@ function Shop() {
     axios
       .get(
         query
-          ? `http://localhost:5000/api/search?query=${query}`
-          : "http://localhost:5000/api/products"
+          ? `${API_BASE_URL}/search?query=${query}`
+          : `${API_BASE_URL}/products`
       )
       .then((response) => {
         let data = response.data;
@@ -74,7 +75,7 @@ function Shop() {
     const quantity = quantities[productId] ?? 1;
     try {
       await axios.post(
-        "http://localhost:5000/api/cart/add",
+        `${API_BASE_URL}/cart/add`,
         { productId, quantity },
         { withCredentials: true }
       );

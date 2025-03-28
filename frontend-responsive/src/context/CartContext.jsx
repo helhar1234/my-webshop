@@ -4,6 +4,7 @@ import axios from "axios";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+    const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -11,7 +12,7 @@ export const CartProvider = ({ children }) => {
     useEffect(() => {
         const fetchCart = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/cart", { withCredentials: true });
+                const response = await axios.get(`${API_BASE_URL}/cart`, { withCredentials: true });
                 setCart(response.data);
             } catch (error) {
                 console.error("🚨 Fehler beim Abrufen des Warenkorbs:", error);
@@ -27,12 +28,12 @@ export const CartProvider = ({ children }) => {
     // 🛠️ Produkt zum Warenkorb hinzufügen
     const addItem = async (productId, quantity) => {
         try {
-            await axios.post("http://localhost:5000/api/cart/add",
+            await axios.post(`${API_BASE_URL}/cart/add`,
                 { productId, quantity },
                 { withCredentials: true }
             );
 
-            const response = await axios.get("http://localhost:5000/api/cart", { withCredentials: true });
+            const response = await axios.get(`${API_BASE_URL}/cart`, { withCredentials: true });
             setCart(response.data);
         } catch (error) {
             console.error("❌ Fehler beim Hinzufügen zum Warenkorb:", error);
@@ -42,7 +43,7 @@ export const CartProvider = ({ children }) => {
     // 🛠️ Warenkorb leeren
     const clearCart = async () => {
         try {
-            await axios.delete("http://localhost:5000/api/cart/clear", { withCredentials: true });
+            await axios.delete(`${API_BASE_URL}/cart/clear`, { withCredentials: true });
             setCart([]);
         } catch (error) {
             console.error("❌ Fehler beim Leeren des Warenkorbs:", error);

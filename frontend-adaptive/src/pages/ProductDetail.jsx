@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function ProductDetail() {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { user } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams(); // Produkt-ID aus URL
@@ -16,7 +17,7 @@ function ProductDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/${id}`)
+      .get(`${API_BASE_URL}/products/${id}`)
       .then((response) => {
         setProduct(response.data);
       })
@@ -49,7 +50,7 @@ function ProductDetail() {
     if (!product) return;
     try {
       await axios.post(
-        "http://localhost:5000/api/cart/add",
+        `${API_BASE_URL}/cart/add`,
         { productId: product.id, quantity },
         { withCredentials: true }
       );

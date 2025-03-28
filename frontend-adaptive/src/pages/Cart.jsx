@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { useCheckout } from "../context/CheckoutContext";
 
 function Cart() {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const [cart, setCart] = useState([]);
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function Cart() {
       return;
     }
     axios
-      .get("http://localhost:5000/api/cart", { withCredentials: true })
+      .get(`${API_BASE_URL}/cart`, { withCredentials: true })
       .then((response) => {
         setCart(response.data);
       })
@@ -30,11 +31,11 @@ function Cart() {
 
   const removeFromCart = async (productId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/cart/remove/${productId}`, {
+      await axios.delete(`${API_BASE_URL}/cart/remove/${productId}`, {
         withCredentials: true,
       });
       // Warenkorb erneut abrufen
-      const response = await axios.get("http://localhost:5000/api/cart", { withCredentials: true });
+      const response = await axios.get(`${API_BASE_URL}/cart`, { withCredentials: true });
       setCart(response.data);
     } catch (error) {
       console.error("❌ Fehler beim Entfernen des Produkts:", error);
@@ -43,7 +44,7 @@ function Cart() {
 
   const clearCart = async () => {
     try {
-      await axios.delete("http://localhost:5000/api/cart/clear", { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/cart/clear`, { withCredentials: true });
       setCart([]);
     } catch (error) {
       console.error("❌ Fehler beim Leeren des Warenkorbs:", error);
