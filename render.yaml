@@ -15,12 +15,11 @@ services:
         value: dbwebshop
       - key: DB_PORT
         value: "5432"
-      - key: BACKEND_PORT
-        value: "5000"
       - key: JWT_SECRET
         value: mysecretkey
     plan: free
     healthCheckPath: /
+
 
   - type: web
     name: frontend-responsive
