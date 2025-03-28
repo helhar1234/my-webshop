@@ -6,6 +6,12 @@ function CheckoutSummary() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { cartItems, address, payment } = useCheckout();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+const authHeader = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
 
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.product_price * item.quantity,

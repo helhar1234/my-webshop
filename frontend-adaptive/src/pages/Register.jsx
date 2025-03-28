@@ -13,6 +13,12 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth(); // Auto-Login nach Registrierung
+  const token = localStorage.getItem("token");
+const authHeader = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
 
   const handleRegister = async () => {
     setLoading(true);
