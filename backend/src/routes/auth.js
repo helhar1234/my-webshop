@@ -43,6 +43,7 @@ router.post('/login', async (req, res) => {
             httpOnly: true,
             secure: true, // ✅ true in Production (Render), false lokal
             sameSite: 'None',      // ✅ damit Cross-Origin klappt
+            domain: 'my-webshop-6ek5.onrender.com',
             maxAge: 1000 * 60 * 60 // 1 Stunde
           });
 
