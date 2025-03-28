@@ -12,11 +12,11 @@ function Shop() {
   const location = useLocation();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-const authHeader = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
+  const authHeader = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   // New state for search term and sorting order
   const [searchTerm, setSearchTerm] = useState("");

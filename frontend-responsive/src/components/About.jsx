@@ -13,7 +13,10 @@ function About() {
         <div className="about__hero-text">
           <h1>Frisch. Nachhaltig. Authentisch.</h1>
           <p>
-            FreshLy liefert Ihnen die frischesten Obst- und Gemüsesorten direkt vom Feld – für ein gesundes, nachhaltiges Leben. Wir verbinden traditionelle Landwirtschaft mit modernem Service, um Ihnen die beste Qualität zu bieten.
+            FreshLy liefert Ihnen die frischesten Obst- und Gemüsesorten direkt
+            vom Feld – für ein gesundes, nachhaltiges Leben. Wir verbinden
+            traditionelle Landwirtschaft mit modernem Service, um Ihnen die
+            beste Qualität zu bieten.
           </p>
         </div>
       </section>
@@ -22,7 +25,12 @@ function About() {
       <section className="about__mission">
         <h2>Unsere Mission</h2>
         <p>
-          Wir glauben an die Kraft frischer, regionaler Produkte und setzen auf nachhaltige Landwirtschaft. Unser Ziel ist es, Menschen mit gesunden Lebensmitteln zu versorgen und dabei aktiv einen Beitrag zum Umweltschutz zu leisten. Durch enge Zusammenarbeit mit lokalen Bauern und modernste Logistik sorgen wir dafür, dass jedes Produkt seinen optimalen Reifegrad erreicht.
+          Wir glauben an die Kraft frischer, regionaler Produkte und setzen auf
+          nachhaltige Landwirtschaft. Unser Ziel ist es, Menschen mit gesunden
+          Lebensmitteln zu versorgen und dabei aktiv einen Beitrag zum
+          Umweltschutz zu leisten. Durch enge Zusammenarbeit mit lokalen Bauern
+          und modernste Logistik sorgen wir dafür, dass jedes Produkt seinen
+          optimalen Reifegrad erreicht.
         </p>
         <img
           src="/images/img/sustainable.jpg"
@@ -35,10 +43,17 @@ function About() {
       <section className="about__overview">
         <h2>Über FreshLy</h2>
         <p>
-          FreshLy wurde gegründet, um den Zugang zu hochwertigen, frischen Lebensmitteln zu vereinfachen. Unser Team arbeitet Tag für Tag daran, Ihnen ein innovatives Einkaufserlebnis zu bieten. Wir sind stolz darauf, Ihnen eine große Auswahl an saisonalen und regionalen Produkten anzubieten – von knackigem Gemüse bis zu saftigen Früchten.
+          FreshLy wurde gegründet, um den Zugang zu hochwertigen, frischen
+          Lebensmitteln zu vereinfachen. Unser Team arbeitet Tag für Tag daran,
+          Ihnen ein innovatives Einkaufserlebnis zu bieten. Wir sind stolz
+          darauf, Ihnen eine große Auswahl an saisonalen und regionalen
+          Produkten anzubieten – von knackigem Gemüse bis zu saftigen Früchten.
         </p>
         <p>
-          Mit modernster Technologie und einem starken Fokus auf Nachhaltigkeit optimieren wir unsere Prozesse ständig. Bei FreshLy steht Qualität an erster Stelle - von der Auswahl der Produkte bis hin zur Auslieferung direkt zu Ihnen nach Hause.
+          Mit modernster Technologie und einem starken Fokus auf Nachhaltigkeit
+          optimieren wir unsere Prozesse ständig. Bei FreshLy steht Qualität an
+          erster Stelle - von der Auswahl der Produkte bis hin zur Auslieferung
+          direkt zu Ihnen nach Hause.
         </p>
       </section>
 

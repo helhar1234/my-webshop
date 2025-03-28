@@ -9,11 +9,11 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-const authHeader = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
+  const authHeader = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   useEffect(() => {
     if (!user) {

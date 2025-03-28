@@ -7,11 +7,11 @@ function CheckoutOverview() {
   const { cartItems, setCartItems } = useCheckout();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-const authHeader = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
+  const authHeader = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   if (!cartItems || cartItems.length === 0) {
     return <p className="checkout-overview__empty">Keine Artikel im Checkout vorhanden.</p>;
@@ -49,10 +49,10 @@ const authHeader = {
                 />
               </div>
               <div className="cart__item-info">
-                  <p className="cart__item-name">{item.product_name}</p>
-                  <p className="cart__item-quantity">Menge: {item.quantity}</p>
-                  <p className="cart__item-total">Gesamt: {total} €</p>
-                </div>
+                <p className="cart__item-name">{item.product_name}</p>
+                <p className="cart__item-quantity">Menge: {item.quantity}</p>
+                <p className="cart__item-total">Gesamt: {total} €</p>
+              </div>
               <button
                 className="cart__item-remove"
                 onClick={() => handleRemove(item.product_id)}
@@ -64,9 +64,9 @@ const authHeader = {
         })}
       </ul>
       <div className="checkout-overview__summary">
-      <p>Gesamtpreis: </p>
-  <span className="total-amount">{totalPrice.toFixed(2)} €</span>
-</div>
+        <p>Gesamtpreis: </p>
+        <span className="total-amount">{totalPrice.toFixed(2)} €</span>
+      </div>
 
       <div className="checkout-overview__actions">
         <button className="button button--danger" onClick={() => navigate("/")}>

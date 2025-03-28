@@ -12,11 +12,11 @@ function Cart() {
   const [loading, setLoading] = useState(true);
   const { setCartItems } = useCheckout();
   const token = localStorage.getItem("token");
-const authHeader = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
+  const authHeader = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   useEffect(() => {
     if (!user) {

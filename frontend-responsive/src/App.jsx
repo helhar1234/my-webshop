@@ -39,7 +39,7 @@ function App() {
         <CartProvider>
           <CheckoutProvider>
             <Navbar />
-          <ScrollToTop />
+            <ScrollToTop />
 
             <Routes>
               <Route path="/" element={<Home />} />

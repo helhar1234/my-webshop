@@ -1,25 +1,25 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const { clearCartByUserId } = require('../models/cart');
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const { clearCartByUserId } = require("../models/cart");
 
 const router = express.Router();
 
 // 🔐 Middleware: Token prüfen
 const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader?.split(' ')[1]; // Format: "Bearer <token>"
+  const authHeader = req.headers["authorization"];
+  const token = authHeader?.split(" ")[1]; // Format: "Bearer <token>"
 
-  if (!token) return res.status(401).json({ error: 'Kein Token gesendet' });
+  if (!token) return res.status(401).json({ error: "Kein Token gesendet" });
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.status(403).json({ error: 'Token ungültig' });
+    if (err) return res.status(403).json({ error: "Token ungültig" });
     req.user = user; // z. B. { userId, username }
     next();
   });
 };
 
 // ✅ Checkout durchführen (z. B. Warenkorb leeren)
-router.post('/', authenticateToken, async (req, res) => {
+router.post("/", authenticateToken, async (req, res) => {
   try {
     await clearCartByUserId(req.user.userId);
     console.log("🛒 Bestellung abgeschlossen für Benutzer:", req.user.userId);

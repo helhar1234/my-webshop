@@ -19,7 +19,6 @@ services:
         value: mysecretkey
     plan: free
 
-
   - type: web
     name: frontend-responsive
     env: docker
