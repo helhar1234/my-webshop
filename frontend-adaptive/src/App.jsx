@@ -1,4 +1,11 @@
 import React from "react";
+import LogRocket from 'logrocket';
+LogRocket.init('bxyh30/webshop-logs');
+LogRocket.identify('2', {
+  name: 'Helene Harrer adaptive',
+  email: 'if22b036@technikum-wien.at',
+});
+
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
