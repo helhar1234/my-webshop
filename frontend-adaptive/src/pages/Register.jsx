@@ -95,10 +95,11 @@ function Register() {
           {loading ? "Registrieren..." : "Registrieren"}
         </button>
         {message && <p className="register-error">{message}</p>}
-      </div>
-      <p className="register-register">
+        <p className="register-register">
         Bereits registriert? <Link to="/login">Hier einloggen</Link>
       </p>
+      </div>
+      
     </div>
   );
 }

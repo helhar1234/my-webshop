@@ -97,12 +97,12 @@ const authHeader = {
             {loading ? "Registrieren..." : "Registrieren"}
           </button>
           {message && <p className="register-error">{message}</p>}
-        </div>
-
-        <p className="register-register text-center mt-3">
+</div>
+          <p className="register-register text-center mt-3">
           Bereits registriert? <Link to="/login">Hier einloggen</Link>
         </p>
-      </div>
+        </div>
+
     </div>
   );
 }
