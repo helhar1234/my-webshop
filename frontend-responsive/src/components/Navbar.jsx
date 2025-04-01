@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
+import { useEffect } from "react";
+import { useCart } from "../context/CartContext";
 
 function Navbar() {
   const { user } = useAuth();
@@ -8,6 +10,14 @@ function Navbar() {
   const [searchActive, setSearchActive] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { cart, updateCart } = useCart();
+
+  useEffect(() => {
+    updateCart();
+  }, [navigate, user]);
+
+  const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
 
   const executeSearch = (e) => {
     e.preventDefault();
@@ -38,7 +48,6 @@ function Navbar() {
 
   return (
     <nav className="navbar container-fluid d-flex align-items-center justify-content-between">
-      {/* Logo */}
       <div className="d-flex align-items-center gap-2">
         <Link to="/">
           <img
@@ -52,7 +61,6 @@ function Navbar() {
         </Link>
       </div>
 
-      {/* Desktop Menu */}
       <ul className="navbar__menu d-none d-md-flex">
         <li className="navbar__item">
           <Link to="/">Home</Link>
@@ -65,9 +73,7 @@ function Navbar() {
         </li>
       </ul>
 
-      {/* Actions */}
       <div className="navbar__actions d-flex align-items-center gap-3">
-        {/* Suchleiste nur auf md+ sichtbar */}
         <form
           onSubmit={executeSearch}
           className={`navbar__search d-none d-md-block ${searchActive ? "active" : ""}`}
@@ -89,21 +95,23 @@ function Navbar() {
           />
         </button>
 
-        {/* Icons (immer sichtbar) */}
         <div className="navbar__icons d-flex gap-3">
           {user ? (
             <>
+              <Link to="/cart" className="navbar__cart-icon-wrapper">
+                <img
+                  src="/images/icons/cart-icon.png"
+                  alt="Warenkorb"
+                  className="navbar__icon bigger"
+                />
+                {cartItemCount > 0 && (
+                  <span className="navbar__cart-badge">{cartItemCount}</span>
+                )}
+              </Link>
               <Link to="/profile">
                 <img
                   src="/images/icons/profile-icon.png"
                   alt="Profil"
-                  className="navbar__icon bigger"
-                />
-              </Link>
-              <Link to="/cart">
-                <img
-                  src="/images/icons/cart-icon.png"
-                  alt="Warenkorb"
                   className="navbar__icon bigger"
                 />
               </Link>
@@ -119,7 +127,6 @@ function Navbar() {
           )}
         </div>
 
-        {/* Hamburger (nur mobil sichtbar) */}
         <button
           className="navbar__hamburger d-md-none"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -128,7 +135,6 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Dropdown Menu Mobil */}
       {menuOpen && (
         <div className="navbar__mobile-menu d-md-none mt-2 w-100 bg-white border rounded p-3 position-absolute top-100 end-0 shadow">
           <ul className="list-unstyled mb-0">
@@ -140,6 +146,31 @@ function Navbar() {
             </li>
             <li className="navbar__item mb-2">
               <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+            </li>
+            <li className="navbar__item mb-2">
+              <div className="navbar__search-wrapper">
+                <form
+                  onSubmit={executeSearch}
+                  className={`navbar__search ${searchActive ? "active" : ""}`}
+                >
+                  <input
+                    type="text"
+                    placeholder="Suche..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onBlur={handleInputBlur}
+                  />
+                </form>
+
+                <button className="navbar__search-btn" onClick={handleSearchIconClick}>
+                  <img
+                    src="/images/icons/search-icon.png"
+                    alt="Search"
+                    className="navbar__icon"
+                  />
+                </button>
+              </div>
+
             </li>
           </ul>
         </div>

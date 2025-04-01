@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 
 function Shop() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
@@ -11,6 +12,7 @@ function Shop() {
   const [quantities, setQuantities] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
+  const { updateCart } = useCart();
   const token = localStorage.getItem("token");
 const authHeader = {
   headers: {
@@ -77,6 +79,7 @@ const authHeader = {
         { productId, quantity },
         authHeader
       );
+      updateCart();
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }

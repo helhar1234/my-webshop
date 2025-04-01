@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { updateCart } = useCart();
 
   const handleLogin = async () => {
     let valid = true;
@@ -31,6 +33,7 @@ function Login() {
     }
     try {
       await login(username, password);
+      updateCart();
       navigate("/profile");
     } catch (error) {
       setError("Fehler beim Login! Bitte überprüfen Sie Ihre Eingaben.");

@@ -5,7 +5,7 @@ import QuantityCounter from "../components/QuantityCounter";
 import ProductPreview from "../components/ShopPreview";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import { useCart } from "../context/CartContext";
 
 function ProductDetail() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
@@ -14,6 +14,7 @@ function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const { updateCart } = useCart();
   const token = localStorage.getItem("token");
   const authHeader = {
     headers: {
@@ -56,10 +57,27 @@ function ProductDetail() {
         { productId: product.id, quantity },
         authHeader
       );
+      updateCart();
     } catch (error) {
       console.error("Fehler beim Hinzufügen zum Warenkorb:", error);
     }
   };
+
+  const [buttonState, setButtonState] = useState("default");
+  
+    const handleClick = (e) => {
+      e.stopPropagation();
+      setButtonState("loading");
+  
+      setTimeout(() => {
+        setButtonState("success");
+        setTimeout(() => {
+          setButtonState("default");
+        }, 1000); // Dauer der Check-Anzeige
+      }, 800); // Dauer des Ladeeffekts
+  
+      handleAddToCart(); // Logik bleibt erhalten
+    };
 
   if (!product) {
     return <p>Lädt...</p>;
@@ -88,12 +106,21 @@ function ProductDetail() {
               onIncrease={handleIncrease}
             />
           </div>
+
           <button
-            className="button button--primary product-detail__add-to-cart"
-            onClick={handleAddToCart}
-          >
-            In den Warenkorb
-          </button>
+      className={`button button--primary product-detail__add-to-cart ${buttonState}`}
+      onClick={handleClick}
+    >
+      {buttonState === "loading" && (
+        <span className="loader"></span>
+      )}
+      {buttonState === "success" && (
+        <span className="check">✔</span>
+      )}
+      {buttonState === "default" && (
+        <span>In den Warenkorb</span>
+      )}
+    </button>
         </div>
       </div>
       <div className="product-detail__preview">

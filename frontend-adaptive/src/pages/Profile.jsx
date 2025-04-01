@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
+import { useCart } from "../context/CartContext";
 
 function Profile() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
@@ -9,6 +10,7 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const { updateCart } = useCart();
   const authHeader = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -19,6 +21,7 @@ function Profile() {
     if (!user) {
       navigate("/login");
     }
+    updateCart();
   }, [user, navigate]);
 
   useEffect(() => {

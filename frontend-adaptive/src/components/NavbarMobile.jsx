@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/shared/mobile/navbar.mobile.scss";
+import { useCart } from "../context/CartContext";
 
 function NavbarMobile() {
   const { user } = useAuth();
@@ -9,6 +10,15 @@ function NavbarMobile() {
   const navRef = useRef(null);
   const menuRef = useRef(null);
   const toggleRef = useRef(null);
+  const navigate = useNavigate();
+  const { cart, updateCart } = useCart();
+  
+  useEffect(() => {
+      updateCart();
+    }, [navigate, user]);
+  
+    const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  
 
   const toggleMenu = (e) => {
     e.preventDefault();
@@ -62,9 +72,13 @@ function NavbarMobile() {
                 <Link to="/profile">
                   <img src="/images/icons/profile-icon.png" alt="Profil" className="nav__icon" />
                 </Link>
-                <Link to="/cart">
-                  <img src="/images/icons/cart-icon.png" alt="Warenkorb" className="nav__icon" />
-                </Link>
+                <Link to="/cart" className="navbar__cart-icon-wrapper">
+  <img src="/images/icons/cart-icon.png" alt="Warenkorb" className="nav__icon" />
+  {cartItemCount > 0 && (
+    <span class="cart-indicator"></span>
+  )}
+</Link>
+
               </>
             ) : (
               <Link to="/login">

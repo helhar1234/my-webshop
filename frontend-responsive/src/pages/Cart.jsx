@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCheckout } from "../context/CheckoutContext";
+import { useCart } from "../context/CartContext";
 
 function Cart() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
@@ -11,6 +12,7 @@ function Cart() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const { setCartItems } = useCheckout();
+  const { updateCart } = useCart();
   const token = localStorage.getItem("token");
 const authHeader = {
   headers: {
@@ -40,6 +42,7 @@ const authHeader = {
       await axios.delete(`${API_BASE_URL}/cart/remove/${productId}`, authHeader);
       const response = await axios.get(`${API_BASE_URL}/cart`, authHeader);
       setCart(response.data);
+      updateCart();
     } catch (error) {
       console.error("❌ Fehler beim Entfernen des Produkts:", error);
     }
@@ -49,6 +52,7 @@ const authHeader = {
     try {
       await axios.delete(`${API_BASE_URL}/cart/clear`, authHeader);
       setCart([]);
+      updateCart();
     } catch (error) {
       console.error("❌ Fehler beim Leeren des Warenkorbs:", error);
     }

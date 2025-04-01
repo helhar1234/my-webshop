@@ -4,44 +4,42 @@ import axios from "axios";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+  const API_BASE_URL =
+    import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
+
   const authHeader = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
 
+  const updateCart = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/cart`, authHeader);
+      setCart(response.data);
+    } catch (error) {
+      console.error("🚨 Fehler beim Abrufen des Warenkorbs:", error);
+      setCart([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const response = await axios.get(`${API_BASE_URL}/cart`, authHeader);
-        setCart(response.data);
-      } catch (error) {
-        console.error("🚨 Fehler beim Abrufen des Warenkorbs:", error);
-        setCart([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCart();
+    updateCart();
   }, []);
-
 
   const addItem = async (productId, quantity) => {
     try {
-      await axios.post(`${API_BASE_URL}/cart/add`,
+      await axios.post(
+        `${API_BASE_URL}/cart/add`,
         { productId, quantity },
         authHeader
       );
-
-
-      const response = await axios.get(`${API_BASE_URL}/cart`, authHeader);
-      setCart(response.data);
+      updateCart();
     } catch (error) {
       console.error("❌ Fehler beim Hinzufügen zum Warenkorb:", error);
     }
@@ -61,9 +59,10 @@ export const CartProvider = ({ children }) => {
   }
 
   return (
-    <CartContext.Provider value={{ cart, addItem, clearCart }}>
+    <CartContext.Provider value={{ cart, addItem, clearCart, updateCart }}>
       {children}
     </CartContext.Provider>
+
   );
 };
 

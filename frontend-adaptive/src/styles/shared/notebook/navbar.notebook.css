@@ -127,4 +127,24 @@
   .mobile-nav {
     display: none !important;
   }
+
+  .navbar__cart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .navbar__cart-badge {
+    position: absolute;
+    bottom: -1px;
+    right: -4px;
+    background-color: #28a745;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 2px 1px;
+    border-radius: 50%;
+    line-height: 1;
+    min-width: 18px;
+    text-align: center;
+}
 }

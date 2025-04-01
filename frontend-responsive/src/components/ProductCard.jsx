@@ -1,5 +1,6 @@
 import React from "react";
 import QuantityCounter from "./QuantityCounter";
+import { useState } from "react";
 
 function ProductCard({
   product,
@@ -10,6 +11,22 @@ function ProductCard({
   onAddToCart,
   onClick,
 }) {
+
+  const [buttonState, setButtonState] = useState("default");
+  
+    const handleClick = (e) => {
+      e.stopPropagation();
+      setButtonState("loading");
+  
+      setTimeout(() => {
+        setButtonState("success");
+        setTimeout(() => {
+          setButtonState("default");
+        }, 1000); // Dauer der Check-Anzeige
+      }, 800); // Dauer des Ladeeffekts
+  
+      onAddToCart(); // Logik bleibt erhalten
+    };
   return (
     <div className="product-card" onClick={onClick}>
       <div className="product-card__image-wrapper">
@@ -34,14 +51,19 @@ function ProductCard({
 
       {/* Full-Width Add-to-Cart Button unterhalb */}
       <button
-        className="button button--primary product-card__button"
-        onClick={(e) => {
-          e.stopPropagation();
-          onAddToCart();
-        }}
-      >
-        In den Warenkorb
-      </button>
+      className={`button button--primary product-card__button ${buttonState}`}
+      onClick={handleClick}
+    >
+      {buttonState === "loading" && (
+        <span className="loader"></span>
+      )}
+      {buttonState === "success" && (
+        <span className="check">✔</span>
+      )}
+      {buttonState === "default" && (
+        <span>In den Warenkorb</span>
+      )}
+    </button>
     </div>
   );
 }

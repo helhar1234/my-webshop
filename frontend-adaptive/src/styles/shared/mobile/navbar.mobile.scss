@@ -87,6 +87,7 @@
       visibility: hidden;
       list-style: none;
       padding: 0;
+      top: 0.4rem;
     }
 
     &__item {
@@ -215,4 +216,42 @@
   .notebook-nav {
     display: none !important;
   }
+
+  .navbar__cart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+  
+  .navbar__cart-badge {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    line-height: 1;
+    min-width: 18px;
+    text-align: center;
+  }
+
+  .cart-indicator {
+    position: absolute;
+    bottom: 1px;
+    right: -2px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: darkgreen;
+    display: inline-block;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
 }

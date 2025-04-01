@@ -4,6 +4,7 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 import { useAuth } from "../context/AuthContext";
 import { ArrowRight } from "lucide-react";
+import { useCart  } from "../context/CartContext";
 
 function ShopPreview() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
@@ -11,6 +12,7 @@ function ShopPreview() {
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
   const navigate = useNavigate();
+  const { updateCart } = useCart();
   const [maxProducts, setMaxProducts] = useState(10);
   const token = localStorage.getItem("token");
 const authHeader = {
@@ -73,6 +75,7 @@ const authHeader = {
         { productId, quantity },
         authHeader
       );
+      updateCart();
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }

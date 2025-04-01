@@ -2,12 +2,14 @@ import { useCheckout } from "../context/CheckoutContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useCart } from "../context/CartContext";
 
 function CheckoutSummary() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const { cartItems, address, payment } = useCheckout();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { updateCart } = useCart();
   const token = localStorage.getItem("token");
 const authHeader = {
   headers: {
@@ -35,6 +37,7 @@ const authHeader = {
         { cart: cartItems },
         authHeader
       );
+      updateCart();
       setTimeout(() => {
         navigate("/");
       }, 1000);

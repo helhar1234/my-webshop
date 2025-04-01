@@ -2,6 +2,7 @@ import { useCheckout } from "../context/CheckoutContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useCart } from "../context/CartContext";
 
 function CheckoutSummary() {
   const API_BASE_URL =
@@ -10,6 +11,7 @@ function CheckoutSummary() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("token");
+  const { updateCart } = useCart();
   const authHeader = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -36,6 +38,7 @@ function CheckoutSummary() {
         { cart: cartItems },
         authHeader
       );
+      updateCart();
       setTimeout(() => {
         navigate("/");
       }, 1000);

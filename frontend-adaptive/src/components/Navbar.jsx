@@ -1,12 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
+import { useEffect } from "react";
+import { useCart } from "../context/CartContext";
 
 function Navbar() {
   const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchActive, setSearchActive] = useState(false);
   const navigate = useNavigate();
+  const { cart, updateCart } = useCart();
+
+  useEffect(() => {
+      updateCart();
+    }, [navigate, user]);
+  
+    const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  
 
   const executeSearch = (e) => {
     e.preventDefault();
@@ -86,17 +96,20 @@ function Navbar() {
         <div className="navbar__icons">
           {user ? (
             <>
+            <Link to="/cart" className="navbar__cart-icon-wrapper">
+                <img
+                  src="/images/icons/cart-icon.png"
+                  alt="Warenkorb"
+                  className="navbar__icon bigger"
+                />
+                {cartItemCount > 0 && (
+                  <span className="navbar__cart-badge">{cartItemCount}</span>
+                )}
+              </Link>
               <Link to="/profile">
                 <img
                   src="/images/icons/profile-icon.png"
                   alt="Profil"
-                  className="navbar__icon bigger"
-                />
-              </Link>
-              <Link to="/cart">
-                <img
-                  src="/images/icons/cart-icon.png"
-                  alt="Warenkorb"
                   className="navbar__icon bigger"
                 />
               </Link>
